@@ -1,0 +1,251 @@
+﻿@using IdentitySample.Models
+@using Cecilo.Models
+@using System.Data.Entity
+@using Cecilo.Helpers
+@model PagedList.IPagedList<Cecilo.Models.Urun>
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Cecilo | Kategoriye Gore Urunlerimiz";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="header-empty-space"></div>
+
+<div class="container">
+    <div class="empty-space col-xs-b15 col-sm-b30"></div>
+    <div class="breadcrumbs">
+        <a href="@Url.Action("index","cecilo")">Anasayfa</a>
+        @if (Model.Count != 0)
+        {
+            <a href="~/urun-kategori/@Model.FirstOrDefault().Kategori.KategoriAdi.Replace(" ","-")">@Model.FirstOrDefault().Kategori.KategoriAdi</a>
+        }
+
+        <a href="~/cecilo/urunlerimiz/">Ürünler</a>
+    </div>
+    <div class="empty-space col-xs-b15 col-sm-b50 col-md-b100"></div>
+    <div class="row">
+        <div class="col-md-9 col-md-push-3">
+            @*<div class="swiper-container rounded">
+                <div class="swiper-button-prev style-1 hidden"></div>
+                <div class="swiper-button-next style-1 hidden"></div>
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="banner-shortcode style-1">
+                            <div class="background" style="background-image: url(../../Assets/img/thumbnail-14.jpg);"></div>
+                            <div class="description valign-middle">
+                                <div class="valign-middle-content">
+                                    <div class="simple-article size-3 light fulltransparent">DON'T MISS!</div>
+                                    <div class="banner-title color">UP TO 70%</div>
+                                    <div class="h4 light">best android tv box</div>
+                                    <div class="empty-space col-xs-b25"></div>
+                                    <a class="button size-1 style-3" href="#">
+                                        <span class="button-wrapper">
+                                            <span class="icon"><img src="~/Assets/img/icon-4.png" alt=""></span>
+                                            <span class="text">learn more</span>
+                                        </span>
+                                    </a>
+                                </div>
+                                <div class="empty-space col-xs-b60 col-sm-b0"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="banner-shortcode style-1">
+                            <div class="background" style="background-image: url(../../Assets/img/thumbnail-10.jpg);"></div>
+                            <div class="description valign-middle">
+                                <div class="valign-middle-content">
+                                    <div class="simple-article size-3 light fulltransparent">DON'T MISS!</div>
+                                    <div class="banner-title color">UP TO 70%</div>
+                                    <div class="h4 light">best android tv box</div>
+                                    <div class="empty-space col-xs-b25"></div>
+                                    <a class="button size-1 style-3" href="#">
+                                        <span class="button-wrapper">
+                                            <span class="icon"><img src="~/Assets/img/icon-4.png" alt=""></span>
+                                            <span class="text">learn more</span>
+                                        </span>
+                                    </a>
+                                </div>
+                                <div class="empty-space col-xs-b60 col-sm-b0"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>*@
+
+            <div class="empty-space col-xs-b35 col-md-b70"></div>
+
+            <div class="align-inline spacing-1">
+                <div class="h4">Ürünlerimiz</div>
+            </div>
+            <div class="align-inline spacing-1">
+                <div class="simple-article size-1">SHOWING <b class="grey"></b> <b class="grey">@Model.Count</b> RESULTS</div>
+            </div>
+            @*<div class="align-inline spacing-1 hidden-xs">
+                    <a class="pagination toggle-products-view active"><img src="~/Assets/img/icon-14.png" alt="" /><img src="~/Assets/img/icon-15.png" alt="" /></a>
+                    <a class="pagination toggle-products-view"><img src="~/Assets/img/icon-16.png" alt="" /><img src="~/Assets/img/icon-17.png" alt="" /></a>
+                </div>*@
+            @*<div class="align-inline spacing-1 filtration-cell-width-1">
+                    <select class="SlectBox small">
+                        <option disabled="disabled" selected="selected">Most popular products</option>
+                        <option value="volvo">Volvo</option>
+                        <option value="saab">Saab</option>
+                        <option value="mercedes">Mercedes</option>
+                        <option value="audi">Audi</option>
+                    </select>
+                </div>
+                <div class="align-inline spacing-1 filtration-cell-width-2">
+                    <select class="SlectBox small">
+                        <option disabled="disabled" selected="selected">Show 30</option>
+                        <option value="volvo">30</option>
+                        <option value="saab">50</option>
+                        <option value="mercedes">100</option>
+                        <option value="audi">200</option>
+                    </select>
+                </div>*@
+
+
+            <div class="empty-space col-xs-b25 col-sm-b60"></div>
+
+            <div class="products-content">
+                <div class="products-wrapper">
+                    <div class="row nopadding">
+                        @{
+                            if (Model != null)
+                            {
+
+                                foreach (var item in Model)
+                                {
+                                    <div class="col-sm-4">
+                                        <div class="product-shortcode style-1">
+                                            <div class="title">
+                                                <div class="simple-article size-1 color col-xs-b5"><a href="~/urun-kategori/@item.Kategori.KategoriAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@item.Kategori.KategoriAdi</a></div>
+                                                <div class="h6 animate-to-green"><a href="~/urunlerimiz/@item.UrunAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@item.UrunAdi</a></div>
+                                            </div>
+                                            <div class="preview">
+                                                <a href="~/urunlerimiz/@item.UrunAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">
+                                                    <img src="@item.Resimler.FirstOrDefault().Path" alt="@item.UrunAdi">
+                                                </a>
+                                            </div>
+                                            <div class="price">
+                                                <div class="color-selection">
+                                                    @if (item.Renkler != null)
+                                                    {
+                                                        foreach (var renk in item.Renkler)
+                                                        {
+                                                            <div class="entry active" style="color: @renk.RenkKodu"></div>
+                                                        }
+                                                    }
+                                                    @*<div class="entry active" style="color: #a7f050;"></div>
+                                                        <div class="entry" style="color: #50e3f0;"></div>
+                                                        <div class="entry" style="color: #eee;"></div>*@
+                                                </div>
+                                                @*<div class="simple-article size-4"><span class="color">@item.Fiyat</span>&nbsp;&nbsp;&nbsp;<span class="line-through">@item.Fiyat</span></div>*@
+                                            </div>
+                                            <div class="description">
+                                                <div class="simple-article text size-2">@Html.Raw(item.Aciklama)</div>
+                                                <div class="icons">
+
+                                                    <a href="~/urunlerimiz/@item.UrunAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")" class="entry"><i class="fa fa-eye" aria-hidden="true"></i></a>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+
+
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="empty-space col-xs-b35 col-sm-b0"></div>
+            <div class="row">
+                @*<div class="col-sm-3 hidden-xs">
+                        <a class="button size-1 style-5" href="#">
+                            <span class="button-wrapper">
+                                <span class="icon"><i class="fa fa-angle-left" aria-hidden="true"></i></span>
+                                <span class="text">prev page</span>
+                            </span>
+                        </a>
+                    </div>*@
+                <div class="col-sm-12 text-center">
+                    <div class="pagination-wrapper">
+                        @Html.PagedListPager(Model, sayfaNo => Url.Action("KategoriyeGoreUrunlerimiz", "cecilo",
+                       new { sayfaNo, siralama = ViewBag.SonSiralama3, SonArananKelime = ViewBag.SonArananKelime2 }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
+                        Sayfa  @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) - @Model.PageCount
+                    </div>
+                </div>
+                @*<div class="col-sm-3 hidden-xs text-right">
+                        <a class="button size-1 style-5" href="#">
+                            <span class="button-wrapper">
+                                <span class="icon"><i class="fa fa-angle-right" aria-hidden="true"></i></span>
+                                <span class="text">prev page</span>
+                            </span>
+                        </a>
+                    </div>*@
+            </div>
+
+            <div class="empty-space col-xs-b35 col-md-b70"></div>
+            <div class="empty-space col-md-b70"></div>
+        </div>
+        <div class="col-md-3 col-md-pull-9">
+            <div class="h4 col-xs-b10">Kategoriler</div>
+
+            @*@Html.Raw(ViewBag.Kategoriler)*@
+
+            @{
+
+                var db = new ApplicationDbContext();
+                var kategori = db.Kategori.Where(a => a.UstKategoriId == null);
+            }
+
+
+            @(Html.TreeView(kategori)
+                .EmptyContent("No locations have been defined yet!")
+                .Children(m => m.AltKategoriler)
+                .HtmlAttributes(new { @class = "categories-menu transparent" })
+                .ItemText(m => m.KategoriAdi)
+                .ItemTemplate(
+                                                                                                        @<text>
+                                                                                                            <a href="~/urun-kategori/@item.KategoriAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@item.KategoriAdi</a>
+                                                                                                        </text>)
+            )
+
+
+
+
+
+
+
+
+            <div class="empty-space col-xs-b25 col-sm-b50"></div>
+
+            <div class="h4 col-xs-b25">Popülar Etiketler</div>
+            <div class="tags light clearfix">
+                @{
+                    var etiketler = db.Etikets.OrderByDescending(a => a.Sira).ToList();
+
+                    if (Model.Count > 0)
+                    {
+                        foreach (var item in etiketler)
+                        {
+                            <a class="tag">@item.EtiketAdi</a>
+                        }
+                    }
+                }
+
+            </div>
+
+            <div class="empty-space col-xs-b25 col-sm-b50"></div>
+
+
+        </div>
+    </div>
+
+</div>
+
+<div class="empty-space col-xs-b15 col-sm-b45"></div>
+<div class="empty-space col-md-b70"></div>
+

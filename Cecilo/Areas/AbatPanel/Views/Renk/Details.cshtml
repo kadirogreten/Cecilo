@@ -1,0 +1,35 @@
+﻿@model Cecilo.Models.Renk
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/AbatPanel/Views/Shared/_CeciloPanel.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Renk</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.RenkKodu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RenkKodu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RenkAdi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RenkAdi)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,44 @@
+﻿@model Cecilo.Models.HakkimizdaMenu
+@{
+    ViewBag.Title = $"Cecilo | {Model.MenuAdi}";
+}
+
+<div class="header-empty-space"></div>
+
+<div class="block-entry fixed-background" style="background-image: url(@Model.Image);">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3">
+                <div class="cell-view simple-banner-height text-center">
+                    <div class="empty-space col-xs-b35 col-sm-b70"></div>
+                    <h1 class="h1 light">@Model.MenuAdi</h1>
+                    <div class="title-underline center"><span></span></div>
+                    <!-- <div class="simple-article light transparent size-4">In feugiat molestie tortor a malesuada. Etiam a venenatis ipsum. Proin pharetra elit at feugiat commodo vel placerat tincidunt sapien nec</div>
+                    <div class="empty-space col-xs-b35 col-sm-b70"></div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="empty-space col-xs-b35 col-md-b70"></div>
+<!-- <div class="empty-space col-xs-b35 col-md-b70"></div> -->
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-5">
+            <div class="simple-article size-3 grey uppercase col-xs-b5">@Model.MenuAdi</div>
+            <div class="h2">@Model.MenuBaslik</div>
+            <div class="title-underline left"><span></span></div>
+            <div class="simple-article size-4 grey">@Model.Aciklama</div>
+        </div>
+        <div class="col-sm-7">
+            <div class="simple-article size-3">
+                @Html.Raw(Model.Detail)
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="empty-space col-xs-b35 col-md-b70"></div>
+

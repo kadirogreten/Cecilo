@@ -1,0 +1,302 @@
+﻿@using System.Data.Entity
+@using IdentitySample.Models
+
+
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no, minimal-ui" />
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Questrial|Raleway:700,900" rel="stylesheet">
+    <link href="~/Assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Assets/css/bootstrap.extension.css" rel="stylesheet" type="text/css" />
+    <link href="~/Assets/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="~/Assets/css/swiper.css" rel="stylesheet" type="text/css" />
+    <link href="~/Assets/css/sumoselect.css" rel="stylesheet" type="text/css" />
+    <link href="~/Assets/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    @RenderSection("HeadIncludes", required: false)
+    <link href="~/Content/owl.carousel.min.css" rel="stylesheet" />
+    <link href="~/Content/owl.theme.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="~/Assets/img/favicon.ico" />
+    <link href="~/Content/easyzoom.css" rel="stylesheet" />
+
+    <title>@ViewBag.Title</title>
+    <style>
+        #owl-demo .owl-item div {
+            padding: 5px;
+        }
+
+        #owl-demo .owl-item img {
+            display: block;
+            width: 100%;
+            height: auto;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
+        }
+
+        #owl-demo .item h2 {
+            position: absolute;
+            color: #FFF;
+            font-size: 22px;
+            line-height: 43px;
+            display: block;
+            top: 40%;
+            right: 10%;
+        }
+    </style>
+</head>
+<body>
+    <!-- LOADER -->
+    <div id="loader-wrapper"></div>
+    <div id="content-block">
+        <!-- HEADER -->
+        <header>
+            <div class="header-top">
+                <div class="content-margins">
+                    <div class="row">
+                        <div class="col-md-5 hidden-xs hidden-sm">
+                            <div class="entry"><b>İletişim:</b> <a href="tel:08506779712">+90  (523) 555 123 8745</a></div>
+                            <div class="entry"><b>e-mail:</b> <a href="mailto:info@cecilo.com.tr">info@cecilo.com.tr</a></div>
+                        </div>
+                        <div class="col-md-7 col-md-text-right">
+                            <!-- <div class="entry"><a class="open-popup" data-rel="1"><b>login</b></a>&nbsp; or &nbsp;<a class="open-popup" data-rel="2"><b>register</b></a></div> -->
+                            <div class="entry language">
+                                <div class="title"><b>tr</b></div>
+                                <div class="language-toggle header-toggle-animation">
+                                    <a href="index.html">tr</a>
+                                    <a href="index1.html">en</a>
+                                    <a href="index1.html">ru</a>
+                                    <a href="index1.html">it</a>
+                                    <a href="index1.html">sp</a>
+                                </div>
+                            </div>
+
+                            <div class="hamburger-icon">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="header-bottom">
+                <div class="content-margins">
+                    <div class="row">
+                        <div class="col-xs-4 col-sm-4">
+                            <a id="logo" href="@Url.Action("index","Cecilo")"><img src="~/Assets/img/logo-2.png" alt="Cecilo" /> Cecilo </a>
+
+                        </div>
+                        <div class="col-xs-8 col-sm-8 text-right">
+                            <div class="nav-wrapper">
+                                <div class="nav-close-layer"></div>
+                                <nav>
+                                    <ul>
+                                        <li class="active">
+                                            <a href="@Url.Action("index","Cecilo")">ANASAYFA</a>
+
+                                        </li>
+                                        <li>
+                                            @{
+                                                var db = new ApplicationDbContext();
+                                                var menu = db.HakkimizdaMenu.Where(b => b.MenuAdi.Contains("Hakkımızda")).FirstOrDefault();
+
+                                                if (menu != null)
+                                                {
+                                                    <a href="~/@menu.MenuAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@menu.MenuAdi</a>
+                                                    <ul>
+                                                        <li>
+                                                            @{
+                                                                var menuList = db.HakkimizdaMenu.Where(a => a.MenuAdi.Contains("Hakkımızda") == false).ToList();
+
+                                                                foreach (var item in menuList)
+                                                                {
+                                                                    <a href="~/@item.MenuAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@item.MenuAdi</a>
+                                                                }
+                                                            }
+
+                                                        </li>
+                                                    </ul>
+                                                }
+
+
+                                            }
+
+                                        </li>
+                                        <li class="megamenu-wrapper">
+                                            <a href="@Url.Action("urunlerimiz","Cecilo")">ÜRÜNLERİMİZ</a>
+                                            <div class="menu-toggle"></div>
+
+                                        </li>
+                                        <li>
+                                            <a href="@Url.Action("belgelerimiz","Cecilo")">BELGELERİMİZ</a>
+                                        </li>
+
+                                        <li><a href="@Url.Action("iletisim","Cecilo")">İLETİŞİM</a></li>
+                                    </ul>
+                                    <div class="navigation-title">
+                                        Navigation
+                                        <div class="hamburger-icon active">
+                                            <span></span>
+                                            <span></span>
+                                            <span></span>
+                                        </div>
+                                    </div>
+                                </nav>
+                            </div>
+                            <div class="header-bottom-icon toggle-search"><i class="fa fa-search" aria-hidden="true"></i></div>
+
+                        </div>
+                    </div>
+                    <div class="header-search-wrapper">
+                        <div class="header-search-content">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-sm-8 col-sm-offset-2 col-lg-6 col-lg-offset-3">
+                                        <form action="/search/index" id="searchString" method="get">
+
+                                            <div class="search-submit">
+                                                <i class="fa fa-search" aria-hidden="true"></i>
+                                                <input type="submit" onclick="document.getElementById('searchString').submit()" />
+                                            </div>
+                                            <input class="simple-input style-1" type="text" value="" name="ara" placeholder="Enter keyword" />
+
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="button-close"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </header>
+
+
+        @RenderBody()
+
+        <!-- FOOTER -->
+        <footer>
+            <div class="container">
+                <div class="footer-top">
+                    <div class="row">
+                        <div class="col-sm-6 col-md-3 col-xs-b30 col-md-b0">
+                            <img src="~/Assets/img/logo-2.png" alt="" width="100" height="60" />
+                            <div class="empty-space col-xs-b20"></div>
+                            <div class="simple-article size-2 light fulltransparent">
+                                Ev işlerinizin baş yardımcısı küçük ev aletleri, başka bir deyişle Cecilo Teknolojik Minikler
+                                her zaman yanınızda! Ayrıca en uygun fiyatlı küçük ev aletlerini satın alabilmek için
+                                bizimde ürünlerimize göz atmayı unutmayın!
+                            </div>
+                            <div class="empty-space col-xs-b20"></div>
+                            <div class="footer-contact"><i class="fa fa-mobile" aria-hidden="true"></i> iletişim: <a href="tel:08506779712">08506779712</a></div>
+                            <div class="footer-contact"><i class="fa fa-envelope-o" aria-hidden="true"></i> email: <a href="mailto:info@cecilo.com.tr">info@cecilo.com.tr</a></div>
+                            <div class="footer-contact">
+                                <i class="fa fa-map-marker" aria-hidden="true"></i> address: <a href="#">
+                                    MEZOPOTAMYA MAH.PEYAS CAD.AZEL RESİDANS-1
+                                    ÇETİN DURMAZ SİT.B APT.NO : 130 B BLOK NO: 1
+                                    KAYAPINAR /DİYARBAKIR
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-3 col-xs-b30 col-md-b0">
+                            <h6 class="h6 light">Hızlı linkler</h6>
+                            <div class="empty-space col-xs-b20"></div>
+                            <div class="footer-column-links">
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <a href="@Url.Action("index","cecilo")">ANASAYFA</a>
+                                        @{
+
+                                            menu = db.HakkimizdaMenu.Where(b => b.MenuAdi.Contains("Hakkımızda")).FirstOrDefault();
+
+                                            if (menu != null)
+                                            {
+                                                <a href="~/@menu.MenuAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@menu.MenuAdi</a>
+
+                                                var menuList = db.HakkimizdaMenu.Where(a => a.MenuAdi.Contains("Hakkımızda") == false).ToList();
+                                                foreach (var item in menuList)
+                                                {
+                                                    <a href="~/@item.MenuAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@item.MenuAdi</a>
+                                                }
+                                            }
+                                        }
+
+                                        @*<a href="~/hakkimizda">HAKKIMIZDA</a>
+                                            <a href="~/vizyonumuz">VİZYONUMUZ</a>
+                                            <a href="~/misyonumuz">MİSYONUMUZ</a>
+                                            <a href="~/insan-kaynaklari">İNSAN KAYNAKLARI</a>*@
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <a href="~/cecilo/urunlerimiz">ÜRÜNLERİMİZ</a>
+                                        <a href="~/cecilo/belgelerimiz">BELGELERİMİZ</a>
+                                        <a href="~/cecilo/iletisim">İLETİŞİM</a>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clear visible-sm"></div>
+
+                        <div class="col-sm-6 col-md-6">
+                            <h6 class="h6 light">ETİKETLER</h6>
+                            <div class="empty-space col-xs-b20"></div>
+                            <div class="tags clearfix">
+                                <a class="tag">Mutfak Robotu</a>
+                                <a class="tag">El Ütüsü</a>
+                                <a class="tag">Kıyma Makinası</a>
+                                <a class="tag">Fön Makinası</a>
+                                <a class="tag">Saç Düzleştirici</a>
+                                <a class="tag">Saç Maşası</a>
+                                <a class="tag">Elektrikli Süpürge</a>
+                                <a class="tag">Meyve Sıkacağı</a>
+                                <a class="tag">Salata Makinası</a>
+                                <a class="tag">Dondurma Makinası</a>
+                                <a class="tag">Kişisel Bakım Ürünleri</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <div class="row">
+                        <div class="col-lg-8 col-xs-text-center col-lg-text-left col-xs-b20 col-lg-b0">
+                            <div class="copyright">&copy; 2019 HER HAKKI SAKLIDIR <a href="http://abatbilgiteknolojileri.com.tr" target="_blank">ABAT BİLGİ TEKNOLOJİLERİ</a></div>
+                            <div class="follow">
+                                <a class="entry" href="#"><i class="fa fa-facebook"></i></a>
+                                <a class="entry" href="#"><i class="fa fa-twitter"></i></a>
+                                <a class="entry" href="#"><i class="fa fa-linkedin"></i></a>
+                                <a class="entry" href="#"><i class="fa fa-google-plus"></i></a>
+                                <a class="entry" href="#"><i class="fa fa-pinterest-p"></i></a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <script src="~/Assets/js/jquery-2.2.4.min.js"></script>
+    <script src="~/Assets/js/swiper.jquery.min.js"></script>
+    <script src="~/Assets/js/global.js"></script>
+
+    <!-- styled select -->
+    <script src="~/Assets/js/jquery.sumoselect.min.js"></script>
+
+    <!-- counter -->
+    <script src="~/Assets/js/jquery.classycountdown.js"></script>
+    <script src="~/Assets/js/jquery.knob.js"></script>
+    <script src="~/Assets/js/jquery.throttle.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha256-pTxD+DSzIwmwhOqTFN+DB+nHjO4iAsbgfyFq5K5bcE0=" crossorigin="anonymous"></script>
+    <script src="~/Scripts/easyzoom.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

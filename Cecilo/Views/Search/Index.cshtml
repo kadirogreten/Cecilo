@@ -1,0 +1,88 @@
+﻿@model Cecilo.Models.SearchViewModel
+@using IdentitySample.Models;
+@using Cecilo.Models;
+@using System.Data.Entity;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="header-empty-space"></div>
+
+<div class="container">
+    <div class="empty-space col-xs-b15 col-sm-b30"></div>
+    <div class="breadcrumbs">
+        <a href="@Url.Action("index","cecilo")">Anasayfa</a>
+
+        <a href="">Search</a>
+    </div>
+    <div class="empty-space col-xs-b15 col-sm-b50 col-md-b100"></div>
+    <div class="row">
+        <div class="col-md-9 col-md-push-3">
+
+            <div class="h6 animate-to-green"><a href="">Ürünlerimiz</a></div>
+            <div class="empty-space col-xs-b15 col-sm-b50 col-md-b100"></div>
+
+            <div class="products-content">
+                <div class="products-wrapper">
+                    <div class="row nopadding">
+
+                        @{
+                            if (Model != null)
+                            {
+
+                                foreach (var item in Model.Urunlerimiz)
+                                {
+                                    <div class="col-sm-4">
+                                        <div class="product-shortcode style-1">
+                                            <div class="title">
+                                                <div class="simple-article size-1 color col-xs-b5"><a href="~/urun-kategori/@item.Kategori.KategoriAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@item.Kategori.KategoriAdi</a></div>
+                                                <div class="h6 animate-to-green"><a href="~/urunlerimiz/@item.UrunAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@item.UrunAdi</a></div>
+                                            </div>
+                                            <div class="preview">
+                                                <a href="~/urunlerimiz/@item.UrunAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">
+                                                    <img src="@item.Resimler.FirstOrDefault().Path" alt="@item.UrunAdi">
+                                                </a>
+                                            </div>
+                                            <div class="price">
+                                                <div class="color-selection">
+                                                    @if (item.Renkler != null)
+                                                    {
+                                                        foreach (var renk in item.Renkler)
+                                                        {
+                                                            <div class="entry active" style="color: @renk.RenkKodu"></div>
+                                                        }
+                                                    }
+                                                    @*<div class="entry active" style="color: #a7f050;"></div>
+                                                        <div class="entry" style="color: #50e3f0;"></div>
+                                                        <div class="entry" style="color: #eee;"></div>*@
+                                                </div>
+                                                @*<div class="simple-article size-4"><span class="color">@item.Fiyat</span>&nbsp;&nbsp;&nbsp;<span class="line-through">@item.Fiyat</span></div>*@
+                                            </div>
+                                            <div class="description">
+                                                @*<div class="simple-article text size-2">@Html.Raw(item.Aciklama)</div>*@
+                                                <div class="icons">
+
+                                                    <a href="~/urunlerimiz/@item.UrunAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")" class="entry"><i class="fa fa-eye" aria-hidden="true"></i></a>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+
+
+                            }
+                        }
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+

@@ -1,0 +1,240 @@
+﻿@model Cecilo.Models.Urun
+@using Cecilo.Helpers
+@using Cecilo.Models
+@using IdentitySample.Models
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/AbatPanel/Views/Shared/_CeciloPanel.cshtml";
+}
+
+
+
+<div class="m-grid__item m-grid__item--fluid m-wrapper">
+
+    <div class="m-content">
+        <div class="row">
+
+            <div class="col-md-12">
+
+
+                <!--begin::Portlet-->
+                <div class="m-portlet m-portlet--tab">
+                    <div class="m-portlet__head">
+                        <div class="m-portlet__head-caption">
+                            <div class="m-portlet__head-title">
+                                <span class="m-portlet__head-icon m--hide">
+                                    <i class="la la-gear"></i>
+                                </span>
+                                <h3 class="m-portlet__head-text">
+                                    Square & Solid Input Style
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--begin::Form-->
+                    <form class="m-form m-form--fit m-form--label-align-right" action="/abatpanel/urun/create" method="post" enctype="multipart/form-data">
+                        @Html.AntiForgeryToken()
+                        <div class="m-portlet__body">
+                            <div class="form-group m-form__group m--margin-top-10">
+                                <div class="alert m-alert m-alert--default" role="alert">
+                                    The example form below demonstrates common HTML form elements solid background style:
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group">
+                                <label for="exampleInputEmail1">Ürün Adı</label>
+
+
+                                @Html.EditorFor(model => model.UrunAdi, new { htmlAttributes = new { @class = "form-control m-input m-input--solid", placeholder = "Ürün Adı" } })
+                                @Html.ValidationMessageFor(model => model.UrunAdi, "", new { @class = "text-danger" })
+
+                            </div>
+                            <div class="form-group m-form__group">
+                                <label for="exampleInputPassword1">Ürün Fiyatı</label>
+                                @Html.EditorFor(model => model.Fiyat, new { htmlAttributes = new { @class = "form-control m-input m-input--solid", placeholder = "Ürün Fiyatı" } })
+                                @Html.ValidationMessageFor(model => model.Fiyat, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group m-form__group">
+                                <label for="exampleInputAciklama1">Ürün Alt Başlık</label>
+                                @Html.EditorFor(model => model.AltBaslik, new { htmlAttributes = new { @class = "form-control m-input m-input--solid", placeholder = "Alt Başlık" } })
+                                @Html.ValidationMessageFor(model => model.AltBaslik, "", new { @class = "text-danger" })
+                            </div>
+
+
+                            <div class="form-group m-form__group">
+                                <label for="exampleTextarea">Açıklama</label>
+                                @Html.CkeditorFor(model => model.Aciklama)
+                                @Html.ValidationMessageFor(model => model.Aciklama, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group m-form__group">
+                                <label for="exampleTextarea">Ürün Özellikleri</label>
+                                @Html.CkeditorFor(model => model.Detay)
+                                @Html.ValidationMessageFor(model => model.Detay, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="row m--margin-top-30">
+                                <div class="col-md-6">
+                                    <div class="form-group m-form__group">
+                                        <label for="exampleInputPassword1">Kategori Id</label>
+
+                                        @Html.DropDownList("KategoriId", null, new { htmlAttributes = new { @class = "form-control m-input m-input--solid", placeholder = "Kategori Başlığı" } })
+                                        @Html.ValidationMessageFor(model => model.KategoriId, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group m-form__group">
+                                        <label for="exampleInputPassword1">Marka Id</label>
+
+                                        @Html.DropDownList("MarkalarId", null, new { htmlAttributes = new { @class = "form-control m-input m-input--solid", placeholder = "Marka Başlığı" } })
+                                        @Html.ValidationMessageFor(model => model.MarkalarId, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="row m--margin-top-30 m--margin-bottom-20">
+                                <div class="col-md-4">
+                                    <div class="form-group m-form__group">
+                                        <label for="exampleInputPassword1">Popüler Mi?</label>
+                                        @Html.EditorFor(model => model.IsPopular, new { htmlAttributes = new { @class = "m-checkbox", placeholder = "Popüler Mi?" } })
+                                        @Html.ValidationMessageFor(model => model.IsPopular, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group m-form__group">
+                                        <label for="exampleInputPassword1">Anasayfada Mı?</label>
+                                        @Html.EditorFor(model => model.IsHome, new { htmlAttributes = new { @class = "m-checkbox", placeholder = "Anasayfada Mı?" } })
+                                        @Html.ValidationMessageFor(model => model.IsHome, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group m-form__group">
+                                        <label for="exampleInputPassword1">Yeni Ürün Mü?</label>
+                                        @Html.EditorFor(model => model.IsNew, new { htmlAttributes = new { @class = "m-checkbox", placeholder = "Yeni Ürün Mü?" } })
+                                        @Html.ValidationMessageFor(model => model.IsNew, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+                            @*<div class="form-group m-form__group">
+            <label for="exampleInputPassword1">Renkler</label>
+            <select id="Renkler" multiple="multiple" name="Renkler" style="width:200px">
+
+
+                @{
+                    ApplicationDbContext db = new ApplicationDbContext();
+                    List<Renk> renkler = db.Renks.ToList();
+
+                    foreach (var item in renkler)
+                    {
+
+                        <option value="@item.RenkAdi">@item.RenkAdi</option>
+
+                    }
+                }
+
+
+
+            </select>
+
+        </div>
+        <h4>You Selected</h4>
+        <b style="color:red">Tea Type: @ViewBag.Message</b>*@
+
+                            <div class="form-group m-form__group">
+                                <label for="exampleTextarea">Resim</label>
+
+                                <input type="file" name="urunResim" required multiple>
+                            </div>
+                        </div>
+                        <div class="m-portlet__foot m-portlet__foot--fit">
+                            <div class="m-form__actions">
+                                <button type="submit" class="btn btn-success">Kaydet</button>
+                                <a href="~/abatpanel/urun/index" type="reset" class="btn btn-secondary">Vazgeç</a>
+                            </div>
+                        </div>
+                    </form>
+
+                    <!--end::Form-->
+                </div>
+
+                <!--end::Portlet-->
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section scripts {
+    @if (ViewBag.Mesaj != null)
+    {
+        if (ViewBag.Status != "error")
+        {
+            <script>
+                    toastr.options = {
+                        "closeButton": true,
+                        "debug": false,
+                        "newestOnTop": false,
+                        "progressBar": false,
+                        "positionClass": "toast-top-right",
+                        "preventDuplicates": false,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "timeOut": "5000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                    };
+
+                    toastr.success("@ViewBag.Mesaj", "Başarılı");
+
+                     $(document).ready(function () {
+
+                    setTimeout(function () {
+                        location.href = "/abatpanel/urun/UruneRenkAta/";
+                }, 3500);
+            });
+            </script>
+        }
+        else
+        {
+            <script>
+                    toastr.options = {
+                        "closeButton": true,
+                        "debug": false,
+                        "newestOnTop": false,
+                        "progressBar": false,
+                        "positionClass": "toast-top-right",
+                        "preventDuplicates": false,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "timeOut": "5000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                    };
+
+                    toastr.error("@ViewBag.Mesaj", "Hata");
+            </script>
+        }
+    }
+}
+
+
+
+
+
+

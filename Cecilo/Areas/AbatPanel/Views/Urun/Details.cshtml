@@ -1,0 +1,67 @@
+﻿@model Cecilo.Models.Urun
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/AbatPanel/Views/Shared/_CeciloPanel.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Urun</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Kategori.KategoriAdi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kategori.KategoriAdi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Markalar.MarkaAdi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Markalar.MarkaAdi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UrunAdi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UrunAdi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AltBaslik)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AltBaslik)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Aciklama)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Aciklama)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fiyat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fiyat)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

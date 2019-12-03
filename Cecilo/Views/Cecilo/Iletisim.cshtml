@@ -1,0 +1,222 @@
+﻿@model Cecilo.Models.Iletisim
+@using BotDetect.Web.Mvc;
+@using Cecilo.Helpers;
+@{
+    ViewBag.Title = "Cecilo | Iletisim";
+}
+@section HeadIncludes {
+    <link href="@BotDetect.Web.CaptchaUrls.Absolute.LayoutStyleSheetUrl"
+          rel="stylesheet" type="text/css" />
+}
+<div class="header-empty-space"></div>
+
+<div class="block-entry fixed-background" style="background-image: url(../../Assets/img/background-26.jpg);">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3">
+                <div class="cell-view simple-banner-height text-center">
+                    <div class="empty-space col-xs-b35 col-sm-b70"></div>
+                    <h1 class="h1 light ">İLETİŞİM</h1>
+
+                    @if (ViewBag.StatusMessage != "")
+                    {
+                        <br />
+                        <br />
+                        @*<div class="title-underline center"><span></span></div>*@
+
+                        <div class="simple-article dark transparent size-5 alert alert-success">@ViewBag.StatusMessage</div>
+                    }
+
+                    @*<div class="simple-article light transparent size-4">In feugiat molestie tortor a malesuada. Etiam a venenatis ipsum. Proin pharetra elit at feugiat commodo vel placerat tincidunt sapien nec</div>*@
+                    <div class="empty-space col-xs-b35 col-sm-b70"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="empty-space col-xs-b35 col-md-b70"></div>
+<div class="empty-space col-xs-b35 col-md-b70"></div>
+
+<div class="container">
+    <div class="text-center">
+        <div class="simple-article size-3 grey uppercase col-xs-b5">Baglantılarımız</div>
+        <div class="h2">Sorularınız için hazırız</div>
+        <div class="title-underline center"><span></span></div>
+    </div>
+</div>
+
+<div class="empty-space col-sm-b15 col-md-b50"></div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="icon-description-shortcode style-1">
+                <img class="icon" src="~/Assets/img/icon-25.png" alt="">
+                <div class="title h6">adres</div>
+                <div class="description simple-article size-2">
+                    MEZOPOTAMYA MAH.PEYAS CAD.AZEL RESİDANS-1
+                    ÇETİN DURMAZ SİT.B APT.NO : 130 B BLOK NO: 1
+                    KAYAPINAR /DİYARBAKIR
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="icon-description-shortcode style-1">
+                <img class="icon" src="~/Assets/img/icon-23.png" alt="">
+                <div class="title h6">TEL</div>
+                <div class="description simple-article size-2" style="line-height: 26px;">
+                    <a href="tel:+35235551238745">0850 677 97 12</a>
+                    <br />
+                    <!-- <a href="tel:+35235557585238">+3  (523) 555 758 5238</a> -->
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="icon-description-shortcode style-1">
+                <img class="icon" src="~/Assets/img/icon-28.png" alt="">
+                <div class="title h6">E POSTA</div>
+                <div class="description simple-article size-2"><a href="mailto:info@cecilohome.com">info@cecilohome.com</a></div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="icon-description-shortcode style-1">
+                <img class="icon" src="~/Assets/img/icon-26.png" alt="">
+                <div class="title h6">sosyal medya</div>
+                <div class="follow light">
+                    <a class="entry" href="#"><i class="fa fa-facebook"></i></a>
+                    <a class="entry" href="#"><i class="fa fa-twitter"></i></a>
+                    <a class="entry" href="#"><i class="fa fa-linkedin"></i></a>
+                    <a class="entry" href="#"><i class="fa fa-google-plus"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="empty-space col-xs-b25 col-sm-b50"></div>
+
+<!-- <div class="container">
+    <div class="map-wrapper">
+        <div id="map-canvas" class="full-width" data-lat="34.0151244" data-lng="-118.4729871" data-zoom="14"></div>
+    </div>
+    <div class="addresses-block hidden">
+        <a class="marker" data-lat="34.0151244" data-lng="-118.4729871" data-string="1. Here is some address or email or phone or something else..."></a>
+    </div>
+</div> -->
+<style>
+    .google-maps {
+        position: relative;
+        padding-bottom: 40%;
+        height: 0;
+        overflow: hidden;
+    }
+
+        .google-maps iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100% !important;
+            height: 100% !important;
+        }
+</style>
+
+<div class="container">
+    <div class="google-maps">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d786.5818582240495!2d40.161591729183066!3d37.94613995631387!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzfCsDU2JzQ2LjEiTiA0MMKwMDknNDMuNyJF!5e0!3m2!1str!2str!4v1563732397919!5m2!1str!2str" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+    </div>
+</div>
+
+
+
+<div class="empty-space col-xs-b25 col-sm-b50"></div>
+
+<div class="container">
+    <h4 class="h4 text-center col-xs-b25">BİR SORUNUZ MU VAR ?</h4>
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <form class="contact-form" action="/cecilo/iletisim" method="post">
+
+                @Html.AntiForgeryToken()
+                <div class="row m5">
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+
+
+                    <div class="col-sm-6">
+
+                        @Html.EditorFor(model => model.AdiSoyadi, new { htmlAttributes = new { @class = "simple-input col-xs-b20", placeholder = "Adınız Soyadınız" } })
+                        @Html.ValidationMessageFor(model => model.AdiSoyadi, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-sm-6">
+
+                        @Html.EditorFor(model => model.Eposta, new { htmlAttributes = new { @class = "simple-input col-xs-b20", placeholder = "E-Posta" } })
+                        @Html.ValidationMessageFor(model => model.Eposta, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-sm-6">
+
+                        @Html.EditorFor(model => model.Telefon, new { htmlAttributes = new { @class = "simple-input col-xs-b20", placeholder = "Telefon" } })
+                        @Html.ValidationMessageFor(model => model.Telefon, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-sm-6">
+
+                        @Html.EditorFor(model => model.Konu, new { htmlAttributes = new { @class = "simple-input col-xs-b20", placeholder = "Konu" } })
+                        @Html.ValidationMessageFor(model => model.Konu, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-sm-12">
+
+                        @Html.EditorFor(model => model.Mesaj, new { htmlAttributes = new { @class = "simple-input col-xs-b20", placeholder = "Mesajınız", cols = 100 } })
+                        @Html.ValidationMessageFor(model => model.Mesaj, "", new { @class = "text-danger" })
+                    </div>
+                    @* showing Captcha on the form:
+                        add Captcha validation controls to the protected action View,
+                        but only if the Captcha hasn't already been solved *@
+
+                    @{MvcCaptcha registrationCaptcha = CaptchaHelper.GetRegistrationCaptcha(); }
+                    @if (!registrationCaptcha.IsSolved)
+                    {
+
+                        <div class="col-md-offset-4 col-md-4">
+                            @Html.Captcha(registrationCaptcha)
+                        </div>
+
+                        @Html.Label("Doğrulama Kodunuz", new
+                        {
+                            @class = "col-md-4 control-label",
+                        @for = "CaptchaCode"
+                        })
+
+                        <div class="col-md-4">
+                            @Html.TextBox("CaptchaCode", null, new { @class = "simple-input col-xs-b20 captchaVal" })
+                        </div>
+
+                    }
+                    <div class="col-sm-12">
+                        <div class="text-center">
+                            <div class="button size-2 style-3">
+                                <span class="button-wrapper">
+                                    <span class="icon"><img src="~/Assets/img/icon-4.png" alt=""></span>
+                                    <span class="text">GÖNDER</span>
+                                </span>
+                                <input type="submit" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="empty-space col-xs-b35 col-md-b70"></div>
+<div class="empty-space col-xs-b35 col-md-b70"></div>
+
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/captcha.validate.js")
+    <script>
+        $("#RegistrationCaptcha_CaptchaImageDiv>a").remove()
+    </script>
+}

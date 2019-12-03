@@ -1,0 +1,207 @@
+﻿@using IdentitySample.Models
+@using Cecilo.Models
+@using System.Data.Entity
+@using Cecilo.Helpers
+@model Cecilo.Models.Urun
+@{
+    ViewBag.Title = $"Cecilo | {Model.UrunAdi}";
+
+}
+<div class="header-empty-space"></div>
+<div class="container">
+    <div class="empty-space col-xs-b15 col-sm-b30"></div>
+    <div class="breadcrumbs">
+        <a href="@Url.Action("index","cecilo")">Anasayfa</a>
+        <a href="~/urun-kategori/@Model.Kategori.KategoriAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@Model.Kategori.KategoriAdi</a>
+        <a href="~/marka/@Model.Markalar.MarkaAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@Model.Markalar.MarkaAdi</a>
+        <a href="~/urunlerimiz/@Model.UrunAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@Model.UrunAdi</a>
+    </div>
+    <div class="empty-space col-xs-b15 col-sm-b50 col-md-b100"></div>
+    <div class="row">
+        <div class="col-md-9 col-md-push-3">
+            <div class="row">
+                <div class="col-sm-6 col-xs-b30 col-sm-b0">
+
+                    <div class="main-product-slider-wrapper swipers-couple-wrapper">
+                        <div class="swiper-container swiper-control-top">
+                            <div class="swiper-button-prev hidden"></div>
+                            <div class="swiper-button-next hidden"></div>
+                            <div class="swiper-wrapper">
+                               
+                                @{
+
+
+
+                                    if (Model.Resimler != null)
+                                    {
+                                        foreach (var item in Model.Resimler)
+                                        {
+                                            <div class="swiper-slide easyzoom easyzoom--overlay">
+                                                <div class="swiper-lazy-preloader"></div>
+                                                <a href="@item.Path">
+                                                    <div class="product-big-preview-entry swiper-lazy" data-background="@item.Path"></div>
+                                                </a>
+
+                                            </div>
+                                        }
+                                    }
+
+                                }
+
+                            </div>
+                        </div>
+
+                        <div class="empty-space col-xs-b30 col-sm-b60"></div>
+
+                        <div class="swiper-container swiper-control-bottom" data-breakpoints="1" data-xs-slides="3" data-sm-slides="3" data-md-slides="4" data-lt-slides="4" data-slides-per-view="5" data-center="1" data-click="1">
+                            <div class="swiper-button-prev hidden"></div>
+                            <div class="swiper-button-next hidden"></div>
+                            <div class="swiper-wrapper">
+
+                                @{
+                                    if (Model.Resimler != null)
+                                    {
+                                        foreach (var item in Model.Resimler)
+                                        {
+                                            <div class="swiper-slide">
+                                                <div class="product-small-preview-entry">
+                                                    <img width="100" height="100" src="@item.Path" alt="@item.Urun.UrunAdi" />
+                                                </div>
+                                            </div>
+                                        }
+                                    }
+
+                                }
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-sm-6">
+                    <div class="simple-article size-3 grey col-xs-b5">@Model.Kategori.KategoriAdi</div>
+                    <div class="h3 col-xs-b25">@Model.UrunAdi</div>
+                    <div class="row col-xs-b25">
+                        @*<div class="col-sm-6">
+                                <div class="simple-article size-5 grey">PRICE: <span class="color">$@Model.Fiyat</span></div>
+                            </div>*@
+
+
+                    </div>
+
+
+                    <div class="row col-xs-b40">
+                        <div class="col-sm-3">
+                            <div class="h6 detail-data-title">Renkler:</div>
+                        </div>
+                        <div class="col-sm-9">
+                            <div class="color-selection size-1">
+                                @if (Model.Renkler != null)
+                                {
+                                    foreach (var item in Model.Renkler)
+                                    {
+                                        <div class="entry active" style="color: @item.RenkKodu"></div>
+                                    }
+
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="simple-article size-2 col-xs-b30">
+                        @Html.Raw(Model.Aciklama)
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="h6 detail-data-title size-2">paylaş:</div>
+                        </div>
+                        <div class="col-sm-9">
+                            <div class="follow light">
+                                <a class="entry" href="#"><i class="fa fa-facebook"></i></a>
+                                <a class="entry" href="#"><i class="fa fa-twitter"></i></a>
+                                <a class="entry" href="#"><i class="fa fa-linkedin"></i></a>
+                                <a class="entry" href="#"><i class="fa fa-google-plus"></i></a>
+                                <a class="entry" href="#"><i class="fa fa-pinterest-p"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="empty-space col-xs-b35 col-md-b70"></div>
+            <div class="simple-article size-2 col-md-b20">
+                @Html.Raw(Model.Detay)
+            </div>
+
+        </div>
+        <div class="col-md-3 col-md-pull-9">
+            <div class="h4 col-xs-b10">Kategoriler</div>
+            @{
+
+                var db = new ApplicationDbContext();
+                var kategori = db.Kategori.Where(a => a.UstKategoriId == null);
+            }
+
+
+            @(Html.TreeView(kategori)
+                .EmptyContent("No locations have been defined yet!")
+                .Children(m => m.AltKategoriler)
+                .HtmlAttributes(new { @class = "categories-menu transparent" })
+                .ItemText(m => m.KategoriAdi)
+                .ItemTemplate(
+                                                                                                                        @<text>
+                                                                                                                            <a href="~/urun-kategori/@item.KategoriAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@item.KategoriAdi</a>
+                                                                                                                        </text>)
+            )
+
+
+
+            <div class="empty-space col-xs-b25 col-sm-b50"></div>
+
+            <div class="h4 col-xs-b25">Popülar Etiketler</div>
+            <div class="tags light clearfix">
+                @{
+                    if (Model.Etiketler != null)
+                    {
+                        foreach (var item in Model.Etiketler.OrderByDescending(a => a.Sira))
+                        {
+                            <a class="tag">@item.EtiketAdi</a>
+                        }
+                    }
+                }
+
+            </div>
+
+            <div class="empty-space col-xs-b25 col-sm-b60"></div>
+
+
+        </div>
+    </div>
+
+
+</div>
+
+
+<div class="empty-space col-xs-b15 col-sm-b45"></div>
+<div class="empty-space col-md-b70"></div>
+
+<figure class="zoo-item"
+        zoo-image="image.jpg"
+        zoo-scale="1.5"
+        zoo-move="true"
+        zoo-over="false"
+        zoo-cursor="false">
+</figure>
+@section scripts {
+    <script>
+        // Instantiate EasyZoom instances
+        var $easyzoom = $('.easyzoom').easyZoom();
+
+        // Get an instance API
+        var api = $easyzoom.data('easyZoom');
+    </script>
+
+
+}

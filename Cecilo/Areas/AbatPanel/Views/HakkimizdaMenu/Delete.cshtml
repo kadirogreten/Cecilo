@@ -1,0 +1,65 @@
+﻿@model Cecilo.Models.HakkimizdaMenu
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/AbatPanel/Views/Shared/_CeciloPanel.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>HakkimizdaMenu</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MenuAdi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MenuAdi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MenuBaslik)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MenuBaslik)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Aciklama)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Aciklama)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Detail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Detail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Image)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Image)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

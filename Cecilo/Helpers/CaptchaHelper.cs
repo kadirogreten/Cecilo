@@ -22,11 +22,4 @@ namespace Cecilo.Helpers
             return registrationCaptcha;
         }
     }
-
-
-    public enum ManageMessageId
-    {
-        FormSuccess,
-        Error
-    }
 }

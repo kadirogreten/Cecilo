@@ -14,5 +14,6 @@ namespace Cecilo.Models
         public string Url { get; set; }
         public int? Sira { get; set; }
         public bool IsActive { get; set; } = false;
+        public LanguageId Lang { get; set; }
     }
 }

@@ -11,15 +11,71 @@ using System.Text;
 using PagedList;
 using Cecilo.Models.Mail;
 using BotDetect.Web.Mvc;
-using Cecilo.Helpers;
+using System.Globalization;
 
 namespace Cecilo.Controllers
 {
-    public class CeciloController : Controller
+    [RoutePrefix("{culture}")]
+    public class CeciloController : BaseController
     {
         StringBuilder sb = new StringBuilder();
         private ApplicationDbContext db = new ApplicationDbContext();
         // GET: Cecilo
+        public ActionResult ChangeCulture(string lang, string returnUrl)
+        {
+            Session["Culture"] = new CultureInfo(lang);
+            return Redirect(returnUrl);
+        }
+        [Route("SetCulture")]
+        public ActionResult SetCulture(string culture, string returnUrl)
+        {
+            // Validate input
+            culture = CultureHelper.GetImplementedCulture(culture);
+            RouteData.Values["culture"] = culture;  // set culture
+
+
+
+            if (culture.Contains("en-US"))
+            {
+                if (returnUrl.Contains("tr-TR"))
+                {
+                    returnUrl = returnUrl.Replace("tr-TR", $"{culture}");
+                }                
+                else
+                {
+                    returnUrl = returnUrl.Replace("en-US", $"{culture}");
+                }
+               
+            }
+            else
+            {
+                if (returnUrl.Contains("tr-TR"))
+                {
+                    returnUrl = returnUrl.Replace("tr-TR", $"{culture}");
+                }               
+                else
+                {
+                    returnUrl = returnUrl.Replace("en-US", $"{culture}");
+                }
+                
+            }
+
+
+            // Save culture in a cookie
+            HttpCookie cookie = Request.Cookies["_culture"];
+            if (cookie != null)
+                cookie.Value = culture;   // update cookie value
+            else
+            {
+                cookie = new HttpCookie("_culture");
+                cookie.Value = culture;
+                cookie.Expires = DateTime.Now.AddYears(1);
+            }
+            Response.Cookies.Add(cookie);
+            return Redirect(returnUrl);
+        }
+
+        
         public ActionResult Index()
         {
             return View();
@@ -38,7 +94,7 @@ namespace Cecilo.Controllers
             }
             return View(menu);
         }
-
+        [Route("Urunlerimiz")]
         public ActionResult Urunlerimiz(string ara, string siralama, string sonArananKelime, int? sayfaNo)
         {
 
@@ -74,7 +130,7 @@ namespace Cecilo.Controllers
                 .Include(a => a.Resimler)
                 .Include(a => a.Markalar)
                 .Include(a => a.Etiketler)
-                .Include(a=>a.Kategori).ToList();
+                .Include(a => a.Kategori).ToList();
             //KategoriAgaciOlustur(kategoriler.ToList());
 
 
@@ -92,7 +148,7 @@ namespace Cecilo.Controllers
 
         }
         [HttpGet]
-        [Route("urun-kategori/{title}")]
+        [Route("c-{title}")]
         public ActionResult KategoriyeGoreUrunlerimiz(string title, string ara, string siralama, string sonArananKelime, int? sayfaNo)
         {
 
@@ -124,9 +180,9 @@ namespace Cecilo.Controllers
 
             var kategoriUrunleri = db.Urun
                 .Include(a => a.Kategori)
-                .Include(a=>a.Markalar)
-                .Include(a=>a.Renkler)
-                .Include(a=>a.Resimler)
+                .Include(a => a.Markalar)
+                .Include(a => a.Renkler)
+                .Include(a => a.Resimler)
                 .Include(a => a.Etiketler)
                 .Where((a => a.Kategori.KategoriAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-") == title.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")
                 || a.Kategori.UstKategori.KategoriAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-") == title.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")
@@ -149,7 +205,7 @@ namespace Cecilo.Controllers
 
 
         [HttpGet]
-        [Route("marka/{title}")]
+        [Route("m-{title}")]
         public ActionResult MarkayaGoreUrunlerimiz(string title, string ara, string siralama, string sonArananKelime, int? sayfaNo)
         {
 
@@ -201,7 +257,7 @@ namespace Cecilo.Controllers
         }
 
 
-        [Route("urunlerimiz/{title}")]
+        [Route("p-{title}")]
         public ActionResult UrunDetay(string title)
         {
             if (title == null)
@@ -209,11 +265,11 @@ namespace Cecilo.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Urun urun = db.Urun
-                .Include(a=>a.Kategori)
-                .Include(a=>a.Renkler)
-                .Include(a=>a.Resimler)
-                .Include(a=>a.Markalar)
-                .Include(a=>a.Etiketler)
+                .Include(a => a.Kategori)
+                .Include(a => a.Renkler)
+                .Include(a => a.Resimler)
+                .Include(a => a.Markalar)
+                .Include(a => a.Etiketler)
                 .Where(a => a.UrunAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-") == title.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-"))
                 .FirstOrDefault();
             if (urun == null)
@@ -222,26 +278,25 @@ namespace Cecilo.Controllers
             }
             return View(urun);
         }
-
+        [Route("belgelerimiz")]
         public ActionResult Belgelerimiz()
         {
             return View();
         }
-        [Route("cecilo/iletisim")]
+        [Route("iletisim")]
         public ActionResult Iletisim(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
                message == ManageMessageId.FormSuccess ? "Talebiniz başarılı bir şekilde gönderildi."
-               : message == ManageMessageId.Error ? "Lütfen zorunlu alanları doldurunuz!"             
+               : message == ManageMessageId.Error ? "Lütfen zorunlu alanları doldurunuz!"
                : "";
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Route("cecilo/iletisim")]
-        [CaptchaValidationActionFilter("CaptchaCode", "RegistrationCaptcha",
-    "Girdiğiniz Kod Yanlış!")]
+        [Route("iletisim")]
+        [CaptchaValidationActionFilter("CaptchaCode", "RegistrationCaptcha", "Girdiğiniz Kod Yanlış!")]
         public ActionResult Iletisim([Bind(Include = "Id,AdiSoyadi,Eposta,Telefon,Konu,Mesaj,OkunduMu,CreatedDate")] Iletisim iletisim)
         {
 
@@ -251,22 +306,24 @@ namespace Cecilo.Controllers
             {
                 iletisim.CreatedDate = DateTime.Now;
                 db.Iletisims.Add(iletisim);
-               
+
                 db.SaveChanges();
                 MvcCaptcha.ResetCaptcha("RegistrationCaptcha");
                 // Mail.MailSender($"{iletisim.AdiSoyadi} kişisinden konusu {iletisim.Konu} olan bir mail aldınız! {iletisim.CreatedDate}");
 
                 message = ManageMessageId.FormSuccess;
-                return RedirectToAction("iletisim", "cecilo", new { Message = message });
+
+                return Redirect($"~/{CultureHelper.GetCurrentCulture()}/iletisim?Message={message}");
+                //return RedirectToAction("iletisim", new { Message = message });
             }
             else
             {
                 message = ManageMessageId.Error;
                 MvcCaptcha.ResetCaptcha("RegistrationCaptcha");
-                return View(new { Message = message});
+                return View(new { Message = message });
             }
         }
 
-        
+
     }
 }

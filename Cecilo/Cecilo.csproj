@@ -1939,6 +1939,7 @@
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Areas\AbatPanel\Controllers\BelgelerimizController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CeciloController.cs" />
     <Compile Include="Areas\AbatPanel\Controllers\EtiketController.cs" />
     <Compile Include="Areas\AbatPanel\Controllers\HakkimizdaMenuController.cs" />
@@ -1957,6 +1958,8 @@
     </Compile>
     <Compile Include="Helpers\CaptchaHelper.cs" />
     <Compile Include="Helpers\CkeditorHtmlHelpers.cs" />
+    <Compile Include="Helpers\CultureHelper.cs" />
+    <Compile Include="Helpers\HelperExtension.cs" />
     <Compile Include="Helpers\TreeView.cs" />
     <Compile Include="Migrations\201907311340105_ilk.cs" />
     <Compile Include="Migrations\201907311340105_ilk.Designer.cs">
@@ -1969,6 +1972,14 @@
     <Compile Include="Migrations\201912021017282_urundetay.cs" />
     <Compile Include="Migrations\201912021017282_urundetay.Designer.cs">
       <DependentUpon>201912021017282_urundetay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912031011034_lang.cs" />
+    <Compile Include="Migrations\201912031011034_lang.Designer.cs">
+      <DependentUpon>201912031011034_lang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912031127147_lang1.cs" />
+    <Compile Include="Migrations\201912031127147_lang1.Designer.cs">
+      <DependentUpon>201912031127147_lang1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -2040,6 +2051,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="images\uploads\" />
+    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201907311340105_ilk.resx">
@@ -2050,6 +2062,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201912021017282_urundetay.resx">
       <DependentUpon>201912021017282_urundetay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912031011034_lang.resx">
+      <DependentUpon>201912031011034_lang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912031127147_lang1.resx">
+      <DependentUpon>201912031127147_lang1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

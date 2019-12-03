@@ -1,10 +1,19 @@
 ﻿@using System.Data.Entity
 @using IdentitySample.Models
 
-
+@*@{
+    var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
+}
+@helper selected(string c, string culture)
+{
+    if (c == culture)
+    {
+        @:checked="checked"
+    }
+}*@
 
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="@Cecilo.CultureHelper.GetCurrentNeutralCulture()">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta name="format-detection" content="telephone=no" />
@@ -66,14 +75,14 @@
                         <div class="col-md-7 col-md-text-right">
                             <!-- <div class="entry"><a class="open-popup" data-rel="1"><b>login</b></a>&nbsp; or &nbsp;<a class="open-popup" data-rel="2"><b>register</b></a></div> -->
                             <div class="entry language">
-                                <div class="title"><b>tr</b></div>
+                                <div class="title"><b>@Cecilo.CultureHelper.GetCurrentNeutralCulture().ToUpper()</b></div>
                                 <div class="language-toggle header-toggle-animation">
-                                    <a href="index.html">tr</a>
-                                    <a href="index1.html">en</a>
-                                    <a href="index1.html">ru</a>
-                                    <a href="index1.html">it</a>
-                                    <a href="index1.html">sp</a>
+                                    @Html.ActionLink("Türkçe", "SetCulture", new { culture = "tr-TR", returnUrl = this.Request.RawUrl }, null)
+                                    @Html.ActionLink("English", "SetCulture", new { culture = "en-US", returnUrl = this.Request.RawUrl }, null)
+
+                                    
                                 </div>
+
                             </div>
 
                             <div class="hamburger-icon">
@@ -108,7 +117,7 @@
 
                                                 if (menu != null)
                                                 {
-                                                    <a href="~/@menu.MenuAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@menu.MenuAdi</a>
+                                                    <a href="~/@Cecilo.CultureHelper.GetCurrentCulture()/@menu.MenuAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")" >@menu.MenuAdi</a>
                                                     <ul>
                                                         <li>
                                                             @{
@@ -116,7 +125,7 @@
 
                                                                 foreach (var item in menuList)
                                                                 {
-                                                                    <a href="~/@item.MenuAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@item.MenuAdi</a>
+                                                                    <a href="~/@Cecilo.CultureHelper.GetCurrentCulture()/@item.MenuAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@item.MenuAdi</a>
                                                                 }
                                                             }
 
@@ -158,7 +167,7 @@
                             <div class="container-fluid">
                                 <div class="row">
                                     <div class="col-sm-8 col-sm-offset-2 col-lg-6 col-lg-offset-3">
-                                        <form action="/search/index" id="searchString" method="get">
+                                        <form action="@Url.Action("index","search")" id="searchString" method="get">
 
                                             <div class="search-submit">
                                                 <i class="fa fa-search" aria-hidden="true"></i>
@@ -219,12 +228,12 @@
 
                                             if (menu != null)
                                             {
-                                                <a href="~/@menu.MenuAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@menu.MenuAdi</a>
+                                                <a href="~/@Cecilo.CultureHelper.GetCurrentCulture()/@menu.MenuAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@menu.MenuAdi</a>
 
                                                 var menuList = db.HakkimizdaMenu.Where(a => a.MenuAdi.Contains("Hakkımızda") == false).ToList();
                                                 foreach (var item in menuList)
                                                 {
-                                                    <a href="~/@item.MenuAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@item.MenuAdi</a>
+                                                    <a href="~/@Cecilo.CultureHelper.GetCurrentCulture()/@item.MenuAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@item.MenuAdi</a>
                                                 }
                                             }
                                         }

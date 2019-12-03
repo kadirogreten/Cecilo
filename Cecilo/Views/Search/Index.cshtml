@@ -36,11 +36,11 @@
                                     <div class="col-sm-4">
                                         <div class="product-shortcode style-1">
                                             <div class="title">
-                                                <div class="simple-article size-1 color col-xs-b5"><a href="~/urun-kategori/@item.Kategori.KategoriAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@item.Kategori.KategoriAdi</a></div>
-                                                <div class="h6 animate-to-green"><a href="~/urunlerimiz/@item.UrunAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@item.UrunAdi</a></div>
+                                                <div class="simple-article size-1 color col-xs-b5"><a href="~/@Cecilo.CultureHelper.GetCurrentCulture()/c-@item.Kategori.KategoriAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@item.Kategori.KategoriAdi</a></div>
+                                                <div class="h6 animate-to-green"><a href="~/@Cecilo.CultureHelper.GetCurrentCulture()/p-@item.UrunAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@item.UrunAdi</a></div>
                                             </div>
                                             <div class="preview">
-                                                <a href="~/urunlerimiz/@item.UrunAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">
+                                                <a href="~/@Cecilo.CultureHelper.GetCurrentCulture()/p-@item.UrunAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">
                                                     <img src="@item.Resimler.FirstOrDefault().Path" alt="@item.UrunAdi">
                                                 </a>
                                             </div>
@@ -63,7 +63,7 @@
                                                 @*<div class="simple-article text size-2">@Html.Raw(item.Aciklama)</div>*@
                                                 <div class="icons">
 
-                                                    <a href="~/urunlerimiz/@item.UrunAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")" class="entry"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                                    <a href="~/@Cecilo.CultureHelper.GetCurrentCulture()/p-@item.UrunAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")" class="entry"><i class="fa fa-eye" aria-hidden="true"></i></a>
 
                                                 </div>
                                             </div>

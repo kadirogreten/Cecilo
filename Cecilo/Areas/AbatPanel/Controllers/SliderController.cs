@@ -50,7 +50,7 @@ namespace Cecilo.Areas.AbatPanel.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
-        public ActionResult Create([Bind(Include = "Id,Path,Baslik,Aciklama,Url,Sira,IsActive")] Slider slider, HttpPostedFileBase sliderResim)
+        public ActionResult Create([Bind(Include = "Id,Path,Baslik,Aciklama,Url,Sira,IsActive,Lang")] Slider slider, HttpPostedFileBase sliderResim)
         {
             string fileName = string.Empty;
 
@@ -119,7 +119,7 @@ namespace Cecilo.Areas.AbatPanel.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
-        public ActionResult Edit([Bind(Include = "Id,Path,Baslik,Aciklama,Url,Sira,IsActive")] Slider slider, HttpPostedFileBase sliderResim)
+        public ActionResult Edit([Bind(Include = "Id,Path,Baslik,Aciklama,Url,Sira,IsActive,Lang")] Slider slider, HttpPostedFileBase sliderResim)
         {
             string fileName = string.Empty;
 

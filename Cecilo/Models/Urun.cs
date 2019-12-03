@@ -30,6 +30,8 @@ namespace Cecilo.Models
         public virtual ICollection<Renk> Renkler { get; set; }
         public virtual ICollection<Etiket> Etiketler { get; set; }
 
-        
+        public LanguageId Lang { get; set; }
+
+
     }
 }

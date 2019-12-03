@@ -137,7 +137,7 @@ namespace Cecilo.Areas.AbatPanel.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
-        public ActionResult Create([Bind(Include = "Id,UrunAdi,AltBaslik,Aciklama,Detay,Fiyat,KategoriId,MarkalarId,IsNew,IsHome,IsPopular")] Urun urun, IEnumerable<HttpPostedFileBase> urunResim)
+        public ActionResult Create([Bind(Include = "Id,UrunAdi,AltBaslik,Aciklama,Detay,Fiyat,KategoriId,MarkalarId,IsNew,IsHome,IsPopular,Lang")] Urun urun, IEnumerable<HttpPostedFileBase> urunResim)
         {
             string fileName = string.Empty;
             short sira = 1;
@@ -220,7 +220,7 @@ namespace Cecilo.Areas.AbatPanel.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
-        public ActionResult Edit([Bind(Include = "Id,UrunAdi,AltBaslik,Aciklama,Detay,Fiyat,KategoriId,MarkalarId,IsNew,IsHome,IsPopular")] Urun urun, int[] RenkId, int[] EtiketId, IEnumerable<HttpPostedFileBase> urunResim)
+        public ActionResult Edit([Bind(Include = "Id,UrunAdi,AltBaslik,Aciklama,Detay,Fiyat,KategoriId,MarkalarId,IsNew,IsHome,IsPopular,Lang")] Urun urun, int[] RenkId, int[] EtiketId, IEnumerable<HttpPostedFileBase> urunResim)
         {
             string fileName = string.Empty;
             short sira = 1;
@@ -280,6 +280,7 @@ namespace Cecilo.Areas.AbatPanel.Controllers
                 eskiUrun.IsNew = urun.IsNew;
                 eskiUrun.IsHome = urun.IsHome;
                 eskiUrun.IsPopular = urun.IsPopular;
+                eskiUrun.Lang = urun.Lang;
 
 
                 if (RenkId != null)

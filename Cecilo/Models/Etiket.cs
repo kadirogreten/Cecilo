@@ -13,5 +13,6 @@ namespace Cecilo.Models
         public int? Sira { get; set; }
 
         public ICollection<Urun> Urun { get; set; }
+        public LanguageId Lang { get; set; }
     }
 }

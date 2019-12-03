@@ -14,6 +14,7 @@ namespace Cecilo.Controllers
 
         private ApplicationDbContext db = new ApplicationDbContext();
         // GET: Search
+        [Route("search")]
         public ActionResult Index(string ara)
         {
 

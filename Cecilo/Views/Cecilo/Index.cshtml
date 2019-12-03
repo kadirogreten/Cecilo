@@ -71,7 +71,7 @@
                                     <div class="preview">
                                         @if (item.Resimler != null)
                                         {
-                                            <a href="~/urunlerimiz/@item.UrunAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">
+                                            <a href="~/@Cecilo.CultureHelper.GetCurrentCulture()/p-@item.UrunAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">
                                                 <img src="@item.Resimler.FirstOrDefault().Path" width="200" height="200" alt="@item.UrunAdi" />
                                             </a>
 
@@ -95,15 +95,15 @@
                                             </div>*@
                                     </div>
                                     <div class="title">
-                                        <div class="simple-article size-1 color col-xs-b10 col-md-b0"><a href="~/urun-kategori/@item.Kategori.KategoriAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@item.Kategori.KategoriAdi</a></div>
-                                        <div class="h6 animate-to-green"><a href="~/urunlerimiz/@item.UrunAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@item.UrunAdi</a></div>
+                                        <div class="simple-article size-1 color col-xs-b10 col-md-b0"><a href="~/@Cecilo.CultureHelper.GetCurrentCulture()/c-@item.Kategori.KategoriAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@item.Kategori.KategoriAdi</a></div>
+                                        <div class="h6 animate-to-green"><a href="~/@Cecilo.CultureHelper.GetCurrentCulture()/p-@item.UrunAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@item.UrunAdi</a></div>
                                     </div>
                                     @*<div class="price">
                                             <div class="simple-article size-2"><span class="dark">@item.Fiyat</span></div>
                                         </div>*@
                                     <div class="icons">
 
-                                        <a href="~/urunlerimiz/@item.UrunAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")" class="entry"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                        <a href="~/@Cecilo.CultureHelper.GetCurrentCulture()/p-@item.UrunAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")" class="entry"><i class="fa fa-eye" aria-hidden="true"></i></a>
 
                                     </div>
                                 </div>
@@ -160,7 +160,7 @@
                                     <div class="preview">
                                         @if (item.Resimler != null)
                                         {
-                                            <a href="~/urunlerimiz/@item.UrunAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">
+                                            <a href="~/@Cecilo.CultureHelper.GetCurrentCulture()/p-@item.UrunAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">
                                                 <img src="@item.Resimler.FirstOrDefault().Path" alt="@item.UrunAdi" />
                                             </a>
 
@@ -184,15 +184,15 @@
                                             </div>*@
                                     </div>
                                     <div class="title">
-                                        <div class="simple-article size-1 color col-xs-b10 col-md-b0"><a href="~/urun-kategori/@item.Kategori.KategoriAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@item.Kategori.KategoriAdi</a></div>
-                                        <div class="h6 animate-to-green"><a href="~/urunlerimiz/@item.UrunAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@item.UrunAdi</a></div>
+                                        <div class="simple-article size-1 color col-xs-b10 col-md-b0"><a href="~/@Cecilo.CultureHelper.GetCurrentCulture()/c-@item.Kategori.KategoriAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@item.Kategori.KategoriAdi</a></div>
+                                        <div class="h6 animate-to-green"><a href="~/@Cecilo.CultureHelper.GetCurrentCulture()/p-@item.UrunAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@item.UrunAdi</a></div>
                                     </div>
                                     @*<div class="price">
                                             <div class="simple-article size-2"><span class="dark">@item.Fiyat</span></div>
                                         </div>*@
                                     <div class="icons">
 
-                                        <a href="~/urunlerimiz/@item.UrunAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")" class="entry"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                        <a href="~/@Cecilo.CultureHelper.GetCurrentCulture()/p-@item.UrunAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")" class="entry"><i class="fa fa-eye" aria-hidden="true"></i></a>
 
                                     </div>
                                 </div>
@@ -249,7 +249,7 @@
                                     <div class="preview">
                                         @if (item.Resimler != null)
                                         {
-                                            <a href="~/urunlerimiz/@item.UrunAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">
+                                            <a href="~/@Cecilo.CultureHelper.GetCurrentCulture()/p-@item.UrunAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">
                                                 <img src="@item.Resimler.FirstOrDefault().Path" alt="@item.UrunAdi" />
                                             </a>
 
@@ -273,15 +273,15 @@
                                             </div>*@
                                     </div>
                                     <div class="title">
-                                        <div class="simple-article size-1 color col-xs-b10 col-md-b0"><a href="~/urun-kategori/@item.Kategori.KategoriAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@item.Kategori.KategoriAdi</a></div>
-                                        <div class="h6 animate-to-green"><a href="~/urunlerimiz/@item.UrunAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@item.UrunAdi</a></div>
+                                        <div class="simple-article size-1 color col-xs-b10 col-md-b0"><a href="~/@Cecilo.CultureHelper.GetCurrentCulture()/c-@item.Kategori.KategoriAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@item.Kategori.KategoriAdi</a></div>
+                                        <div class="h6 animate-to-green"><a href="~/@Cecilo.CultureHelper.GetCurrentCulture()/p-@item.UrunAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@item.UrunAdi</a></div>
                                     </div>
                                     @*<div class="price">
                                             <div class="simple-article size-2"><span class="dark">@item.Fiyat</span></div>
                                         </div>*@
                                     <div class="icons">
 
-                                        <a href="~/urunlerimiz/@item.UrunAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")" class="entry"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                        <a href="~/@Cecilo.CultureHelper.GetCurrentCulture()/p-@item.UrunAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")" class="entry"><i class="fa fa-eye" aria-hidden="true"></i></a>
 
                                     </div>
                                 </div>

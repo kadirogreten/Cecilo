@@ -10,5 +10,6 @@ namespace Cecilo.Models
         public int Id { get; set; }
         public string BelgeAdi { get; set; }
         public string Image { get; set; }
+        public LanguageId Lang { get; set; }
     }
 }

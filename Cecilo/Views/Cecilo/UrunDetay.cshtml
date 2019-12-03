@@ -12,9 +12,9 @@
     <div class="empty-space col-xs-b15 col-sm-b30"></div>
     <div class="breadcrumbs">
         <a href="@Url.Action("index","cecilo")">Anasayfa</a>
-        <a href="~/urun-kategori/@Model.Kategori.KategoriAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@Model.Kategori.KategoriAdi</a>
-        <a href="~/marka/@Model.Markalar.MarkaAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@Model.Markalar.MarkaAdi</a>
-        <a href="~/urunlerimiz/@Model.UrunAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@Model.UrunAdi</a>
+        <a href="~/@Cecilo.CultureHelper.GetCurrentCulture()/c-@Model.Kategori.KategoriAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@Model.Kategori.KategoriAdi</a>
+        <a href="~/@Cecilo.CultureHelper.GetCurrentCulture()/m-@Model.Markalar.MarkaAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@Model.Markalar.MarkaAdi</a>
+        <a href="~/@Cecilo.CultureHelper.GetCurrentCulture()/p-@Model.UrunAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@Model.UrunAdi</a>
     </div>
     <div class="empty-space col-xs-b15 col-sm-b50 col-md-b100"></div>
     <div class="row">
@@ -152,7 +152,7 @@
                 .ItemText(m => m.KategoriAdi)
                 .ItemTemplate(
                                                                                                                         @<text>
-                                                                                                                            <a href="~/urun-kategori/@item.KategoriAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@item.KategoriAdi</a>
+                                                                                                                            <a href="~/@Cecilo.CultureHelper.GetCurrentCulture()/c-@item.KategoriAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@item.KategoriAdi</a>
                                                                                                                         </text>)
             )
 
@@ -187,13 +187,7 @@
 <div class="empty-space col-xs-b15 col-sm-b45"></div>
 <div class="empty-space col-md-b70"></div>
 
-<figure class="zoo-item"
-        zoo-image="image.jpg"
-        zoo-scale="1.5"
-        zoo-move="true"
-        zoo-over="false"
-        zoo-cursor="false">
-</figure>
+
 @section scripts {
     <script>
         // Instantiate EasyZoom instances

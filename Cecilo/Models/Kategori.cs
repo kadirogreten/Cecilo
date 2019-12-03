@@ -21,6 +21,7 @@ namespace Cecilo.Models
         public virtual ICollection<Kategori> AltKategoriler { get; set; }
 
         public short Sira { get; set; }
+        public LanguageId Lang { get; set; }
 
     }
 }

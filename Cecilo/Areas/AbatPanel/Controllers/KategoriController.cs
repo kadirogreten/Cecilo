@@ -49,7 +49,7 @@ namespace Cecilo.Areas.AbatPanel.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,UstKategoriId,KategoriAdi")] Kategori kategori)
+        public ActionResult Create([Bind(Include = "Id,UstKategoriId,KategoriAdi,Lang")] Kategori kategori)
         {
             if (ModelState.IsValid)
             {
@@ -93,7 +93,7 @@ namespace Cecilo.Areas.AbatPanel.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,UstKategoriId,KategoriAdi")] Kategori kategori)
+        public ActionResult Edit([Bind(Include = "Id,UstKategoriId,KategoriAdi,Lang")] Kategori kategori)
         {
             if (ModelState.IsValid)
             {

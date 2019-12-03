@@ -12,5 +12,6 @@ namespace Cecilo.Models
         public string RenkAdi { get; set; }
 
         public virtual ICollection<Urun> Urunler { get; set; }
+        public LanguageId Lang { get; set; }
     }
 }

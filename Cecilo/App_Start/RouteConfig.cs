@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using Cecilo;
+using System.Web.Mvc;
 using System.Web.Routing;
 
 namespace IdentitySample
@@ -15,19 +16,18 @@ namespace IdentitySample
 
             routes.MapMvcAttributeRoutes();
 
-            routes.MapRoute(
-              name: "Menu",
-              url: "{controller}/{action}/{title}",
-              defaults: null,
-              constraints: new { title = @"[a-zA-Z]+".Replace(" ", "-") } //Burada yönlendirmenin yapılabilmesi için
-                                                                          //title verisinin yalnızca metinsel olmasını şart koştuk.
+           // routes.MapRoute(
+           //   name: "Cecilo",
+           //   url: "{culture}/{title}",
+           //   defaults: new { culture = CultureHelper.GetDefaultCulture(), controller = "Cecilo", action = "Index", title = "" }
 
-           );
+           //);
+
 
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Cecilo", action = "Index", id = UrlParameter.Optional },
+                defaults: new { culture = CultureHelper.GetDefaultCulture(), controller = "Cecilo", action = "Index", id = UrlParameter.Optional },
                 namespaces: new[] { "Cecilo.Controllers" }
             );
         }

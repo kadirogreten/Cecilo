@@ -50,7 +50,7 @@ namespace Cecilo.Areas.AbatPanel.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
-        public ActionResult Create([Bind(Include = "Id,BelgeAdi,Image")] Belgelerimiz belgelerimiz,HttpPostedFileBase file)
+        public ActionResult Create([Bind(Include = "Id,BelgeAdi,Image,Lang")] Belgelerimiz belgelerimiz,HttpPostedFileBase file)
         {
             string fileName = string.Empty;
 
@@ -113,7 +113,7 @@ namespace Cecilo.Areas.AbatPanel.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
-        public ActionResult Edit([Bind(Include = "Id,BelgeAdi,Image")] Belgelerimiz belgelerimiz, HttpPostedFileBase file)
+        public ActionResult Edit([Bind(Include = "Id,BelgeAdi,Image,Lang")] Belgelerimiz belgelerimiz, HttpPostedFileBase file)
         {
             string fileName = string.Empty;
 

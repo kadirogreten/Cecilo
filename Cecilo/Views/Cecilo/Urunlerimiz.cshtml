@@ -17,7 +17,7 @@
         <a href="@Url.Action("index","cecilo")">Anasayfa</a>
         @if (Model.Count != 0)
         {
-            <a href="~/urun-kategori/@Model.FirstOrDefault().Kategori.KategoriAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@Model.First().Kategori.KategoriAdi</a>
+            <a href="~/@Cecilo.CultureHelper.GetCurrentCulture()/c-@Model.FirstOrDefault().Kategori.KategoriAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@Model.First().Kategori.KategoriAdi</a>
         }
 
         <a href="~/cecilo/urunlerimiz/">Ürünler</a>
@@ -120,11 +120,11 @@
                                     <div class="col-sm-4">
                                         <div class="product-shortcode style-1">
                                             <div class="title">
-                                                <div class="simple-article size-1 color col-xs-b5"><a href="~/urun-kategori/@item.Kategori.KategoriAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@item.Kategori.KategoriAdi</a></div>
-                                                <div class="h6 animate-to-green"><a href="~/urunlerimiz/@item.UrunAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@item.UrunAdi</a></div>
+                                                <div class="simple-article size-1 color col-xs-b5"><a href="~/@Cecilo.CultureHelper.GetCurrentCulture()/c-@item.Kategori.KategoriAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@item.Kategori.KategoriAdi</a></div>
+                                                <div class="h6 animate-to-green"><a href="~/@Cecilo.CultureHelper.GetCurrentCulture()/p-@item.UrunAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@item.UrunAdi</a></div>
                                             </div>
                                             <div class="preview">
-                                                <a href="~/urunlerimiz/@item.UrunAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">
+                                                <a href="~/@Cecilo.CultureHelper.GetCurrentCulture()/p-@item.UrunAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">
                                                     <img src="@item.Resimler.First().Path" alt="@item.UrunAdi">
                                                 </a>
                                             </div>
@@ -147,7 +147,7 @@
                                                 <div class="simple-article text size-2">@Html.Raw(item.Aciklama)</div>
                                                 <div class="icons">
 
-                                                    <a href="~/urunlerimiz/@item.UrunAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")" class="entry"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                                    <a href="~/@Cecilo.CultureHelper.GetCurrentCulture()/p-@item.UrunAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")" class="entry"><i class="fa fa-eye" aria-hidden="true"></i></a>
 
                                                 </div>
                                             </div>
@@ -212,7 +212,7 @@
                 .ItemText(m => m.KategoriAdi)
                 .ItemTemplate(
                                                         @<text>
-                                                            <a href="~/urun-kategori/@item.KategoriAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@item.KategoriAdi</a>
+                                                            <a href="~/@Cecilo.CultureHelper.GetCurrentCulture()/c-@item.KategoriAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@item.KategoriAdi</a>
                                                         </text>)
             )
 

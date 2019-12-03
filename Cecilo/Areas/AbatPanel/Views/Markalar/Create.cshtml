@@ -45,8 +45,14 @@
                                 @Html.ValidationMessageFor(model => model.MarkaAdi, "", new { @class = "text-danger" })
 
                             </div>
-                            
 
+                            <div class="form-group m-form__group">
+                                <label for="exampleInputLang1">Dil</label>
+
+                                @Html.EnumDropDownListFor(model => model.Lang, "Dil Seçiniz", new { @class = "form-control m-input m-input--solid" })
+                                @Html.ValidationMessageFor(model => model.Lang, "", new { @class = "text-danger" })
+
+                            </div>
 
                         </div>
                         <div class="m-portlet__foot m-portlet__foot--fit">

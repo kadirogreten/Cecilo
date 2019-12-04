@@ -1,4 +1,5 @@
-﻿using IdentitySample.Models;
+﻿using Cecilo.Controllers;
+using IdentitySample.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -10,6 +11,7 @@ using System.Web.Mvc;
 namespace IdentitySample.Controllers
 {
     [Authorize]
+
     public class AccountController : Controller
     {
         public AccountController()
@@ -90,6 +92,7 @@ namespace IdentitySample.Controllers
         // GET: /Account/VerifyCode
         [HttpGet]
         [AllowAnonymous]
+        
         public async Task<ActionResult> VerifyCode(string provider, string returnUrl, bool rememberMe)
         {
             // Require that the user has already logged in via username/password or external login
@@ -110,6 +113,7 @@ namespace IdentitySample.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
+        
         public async Task<ActionResult> VerifyCode(VerifyCodeViewModel model)
         {
             if (!ModelState.IsValid)
@@ -135,6 +139,7 @@ namespace IdentitySample.Controllers
         // GET: /Account/Register
         [HttpGet]
         [AllowAnonymous]
+        
         public ActionResult Register()
         {
             return View();
@@ -145,6 +150,7 @@ namespace IdentitySample.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
+        
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
@@ -170,6 +176,7 @@ namespace IdentitySample.Controllers
         // GET: /Account/ConfirmEmail
         [HttpGet]
         [AllowAnonymous]
+        
         public async Task<ActionResult> ConfirmEmail(string userId, string code)
         {
             if (userId == null || code == null)
@@ -184,6 +191,7 @@ namespace IdentitySample.Controllers
         // GET: /Account/ForgotPassword
         [HttpGet]
         [AllowAnonymous]
+        
         public ActionResult ForgotPassword()
         {
             return View();
@@ -194,6 +202,7 @@ namespace IdentitySample.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
+        
         public async Task<ActionResult> ForgotPassword(ForgotPasswordViewModel model)
         {
             if (ModelState.IsValid)
@@ -220,6 +229,7 @@ namespace IdentitySample.Controllers
         // GET: /Account/ForgotPasswordConfirmation
         [HttpGet]
         [AllowAnonymous]
+        
         public ActionResult ForgotPasswordConfirmation()
         {
             return View();
@@ -229,6 +239,7 @@ namespace IdentitySample.Controllers
         // GET: /Account/ResetPassword
         [HttpGet]
         [AllowAnonymous]
+        
         public ActionResult ResetPassword(string code)
         {
             return code == null ? View("Error") : View();
@@ -239,6 +250,7 @@ namespace IdentitySample.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
+        
         public async Task<ActionResult> ResetPassword(ResetPasswordViewModel model)
         {
             if (!ModelState.IsValid)
@@ -264,6 +276,7 @@ namespace IdentitySample.Controllers
         // GET: /Account/ResetPasswordConfirmation
         [HttpGet]
         [AllowAnonymous]
+        
         public ActionResult ResetPasswordConfirmation()
         {
             return View();
@@ -274,6 +287,7 @@ namespace IdentitySample.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
+        
         public ActionResult ExternalLogin(string provider, string returnUrl)
         {
             // Request a redirect to the external login provider
@@ -284,6 +298,7 @@ namespace IdentitySample.Controllers
         // GET: /Account/SendCode
         [HttpGet]
         [AllowAnonymous]
+       
         public async Task<ActionResult> SendCode(string returnUrl, bool rememberMe)
         {
             var userId = await SignInManager.GetVerifiedUserIdAsync();
@@ -301,6 +316,7 @@ namespace IdentitySample.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
+       
         public async Task<ActionResult> SendCode(SendCodeViewModel model)
         {
             if (!ModelState.IsValid)
@@ -320,6 +336,7 @@ namespace IdentitySample.Controllers
         // GET: /Account/ExternalLoginCallback
         [HttpGet]
         [AllowAnonymous]
+        
         public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
         {
             var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync();
@@ -352,6 +369,7 @@ namespace IdentitySample.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
+        
         public async Task<ActionResult> ExternalLoginConfirmation(ExternalLoginConfirmationViewModel model, string returnUrl)
         {
             if (User.Identity.IsAuthenticated)
@@ -389,6 +407,7 @@ namespace IdentitySample.Controllers
         // POST: /Account/LogOff
         [HttpPost]
         [ValidateAntiForgeryToken]
+        
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut();
@@ -399,6 +418,7 @@ namespace IdentitySample.Controllers
         // GET: /Account/ExternalLoginFailure
         [HttpGet]
         [AllowAnonymous]
+        
         public ActionResult ExternalLoginFailure()
         {
             return View();

@@ -11,33 +11,17 @@ namespace Cecilo.Controllers
     {
         protected override IAsyncResult BeginExecuteCore(AsyncCallback callback, object state)
         {
-
-            var routeData = RouteData;
-            if (routeData.Values.ContainsKey("MS_DirectRouteMatches"))
-            {
-                routeData = ((IEnumerable<System.Web.Routing.RouteData>)routeData.Values["MS_DirectRouteMatches"]).First();
-            }
-
-
-            string cultureName = routeData.Values["culture"] as string;
+            string cultureName = null;
 
             // Attempt to read the culture cookie from Request
-            if (cultureName == null)
+            HttpCookie cultureCookie = Request.Cookies["_culture"];
+            if (cultureCookie != null)
+                cultureName = cultureCookie.Value;
+            else
                 cultureName = Request.UserLanguages != null && Request.UserLanguages.Length > 0 ? Request.UserLanguages[0] : null; // obtain it from HTTP header AcceptLanguages
 
             // Validate culture name
             cultureName = CultureHelper.GetImplementedCulture(cultureName); // This is safe
-
-
-            if (routeData.Values["culture"] as string != cultureName)
-            {
-
-                // Force a valid culture in the URL
-                routeData.Values["culture"] = cultureName.ToLowerInvariant(); // lower case too
-
-                // Redirect user
-                Response.RedirectToRoute(routeData.Values);
-            }
 
 
             // Modify current thread's cultures            

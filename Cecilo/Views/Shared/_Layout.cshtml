@@ -1,7 +1,7 @@
 ﻿@using System.Data.Entity
 @using IdentitySample.Models
 
-@*@{
+@{
     var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
 }
 @helper selected(string c, string culture)
@@ -10,7 +10,7 @@
     {
         @:checked="checked"
     }
-}*@
+}
 
 <!DOCTYPE html>
 <html lang="@Cecilo.CultureHelper.GetCurrentNeutralCulture()">
@@ -69,7 +69,7 @@
                 <div class="content-margins">
                     <div class="row">
                         <div class="col-md-5 hidden-xs hidden-sm">
-                            <div class="entry"><b>İletişim:</b> <a href="tel:08506779712">+90  (523) 555 123 8745</a></div>
+                            <div class="entry"><b>@Resources.Resources.Iletisim:</b> <a href="tel:08506779712">+90  (523) 555 123 8745</a></div>
                             <div class="entry"><b>e-mail:</b> <a href="mailto:info@cecilo.com.tr">info@cecilo.com.tr</a></div>
                         </div>
                         <div class="col-md-7 col-md-text-right">
@@ -77,9 +77,8 @@
                             <div class="entry language">
                                 <div class="title"><b>@Cecilo.CultureHelper.GetCurrentNeutralCulture().ToUpper()</b></div>
                                 <div class="language-toggle header-toggle-animation">
-                                    @Html.ActionLink("Türkçe", "SetCulture", new { culture = "tr-TR", returnUrl = this.Request.RawUrl }, null)
-                                    @Html.ActionLink("English", "SetCulture", new { culture = "en-US", returnUrl = this.Request.RawUrl }, null)
-
+                                    @Html.ActionLink("Türkçe", "SetCulture", new { culture = "tr", returnUrl = this.Request.RawUrl }, null)
+                                    @Html.ActionLink("English", "SetCulture", new { culture = "en-us", returnUrl = this.Request.RawUrl }, null)
                                     
                                 </div>
 
@@ -107,7 +106,8 @@
                                 <nav>
                                     <ul>
                                         <li class="active">
-                                            <a href="@Url.Action("index","Cecilo")">ANASAYFA</a>
+
+                                            <a href="@Url.Action("index","Cecilo")">@Resources.Resources.Anasayfa</a>
 
                                         </li>
                                         <li>
@@ -117,7 +117,7 @@
 
                                                 if (menu != null)
                                                 {
-                                                    <a href="~/@Cecilo.CultureHelper.GetCurrentCulture()/@menu.MenuAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")" >@menu.MenuAdi</a>
+                                                    <a href="~/@menu.MenuAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@menu.MenuAdi</a>
                                                     <ul>
                                                         <li>
                                                             @{
@@ -125,7 +125,7 @@
 
                                                                 foreach (var item in menuList)
                                                                 {
-                                                                    <a href="~/@Cecilo.CultureHelper.GetCurrentCulture()/@item.MenuAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@item.MenuAdi</a>
+                                                                    <a href="~/@item.MenuAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@item.MenuAdi</a>
                                                                 }
                                                             }
 
@@ -138,15 +138,15 @@
 
                                         </li>
                                         <li class="megamenu-wrapper">
-                                            <a href="@Url.Action("urunlerimiz","Cecilo")">ÜRÜNLERİMİZ</a>
+                                            <a href="@Url.Action("urunlerimiz","Cecilo")">@Resources.Resources.Urunlerimiz</a>
                                             <div class="menu-toggle"></div>
 
                                         </li>
                                         <li>
-                                            <a href="@Url.Action("belgelerimiz","Cecilo")">BELGELERİMİZ</a>
+                                            <a href="@Url.Action("belgelerimiz","Cecilo")">@Resources.Resources.Belgelerimiz</a>
                                         </li>
 
-                                        <li><a href="@Url.Action("iletisim","Cecilo")">İLETİŞİM</a></li>
+                                        <li><a href="@Url.Action("iletisim","Cecilo")">@Resources.Resources.Iletisim</a></li>
                                     </ul>
                                     <div class="navigation-title">
                                         Navigation
@@ -200,15 +200,13 @@
                             <img src="~/Assets/img/logo-2.png" alt="" width="100" height="60" />
                             <div class="empty-space col-xs-b20"></div>
                             <div class="simple-article size-2 light fulltransparent">
-                                Ev işlerinizin baş yardımcısı küçük ev aletleri, başka bir deyişle Cecilo Teknolojik Minikler
-                                her zaman yanınızda! Ayrıca en uygun fiyatlı küçük ev aletlerini satın alabilmek için
-                                bizimde ürünlerimize göz atmayı unutmayın!
+                                @Resources.Resources.FooterArticle
                             </div>
                             <div class="empty-space col-xs-b20"></div>
-                            <div class="footer-contact"><i class="fa fa-mobile" aria-hidden="true"></i> iletişim: <a href="tel:08506779712">08506779712</a></div>
+                            <div class="footer-contact"><i class="fa fa-mobile" aria-hidden="true"></i> @Resources.Resources.Iletisim: <a href="tel:08506779712">08506779712</a></div>
                             <div class="footer-contact"><i class="fa fa-envelope-o" aria-hidden="true"></i> email: <a href="mailto:info@cecilo.com.tr">info@cecilo.com.tr</a></div>
                             <div class="footer-contact">
-                                <i class="fa fa-map-marker" aria-hidden="true"></i> address: <a href="#">
+                                <i class="fa fa-map-marker" aria-hidden="true"></i> @Resources.Resources.Adres: <a href="#">
                                     MEZOPOTAMYA MAH.PEYAS CAD.AZEL RESİDANS-1
                                     ÇETİN DURMAZ SİT.B APT.NO : 130 B BLOK NO: 1
                                     KAYAPINAR /DİYARBAKIR
@@ -221,19 +219,19 @@
                             <div class="footer-column-links">
                                 <div class="row">
                                     <div class="col-xs-6">
-                                        <a href="@Url.Action("index","cecilo")">ANASAYFA</a>
+                                        <a href="@Url.Action("index","cecilo")">@Resources.Resources.Anasayfa</a>
                                         @{
 
                                             menu = db.HakkimizdaMenu.Where(b => b.MenuAdi.Contains("Hakkımızda")).FirstOrDefault();
 
                                             if (menu != null)
                                             {
-                                                <a href="~/@Cecilo.CultureHelper.GetCurrentCulture()/@menu.MenuAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@menu.MenuAdi</a>
+                                                <a href="~/@menu.MenuAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@menu.MenuAdi</a>
 
                                                 var menuList = db.HakkimizdaMenu.Where(a => a.MenuAdi.Contains("Hakkımızda") == false).ToList();
                                                 foreach (var item in menuList)
                                                 {
-                                                    <a href="~/@Cecilo.CultureHelper.GetCurrentCulture()/@item.MenuAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@item.MenuAdi</a>
+                                                    <a href="~/@item.MenuAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@item.MenuAdi</a>
                                                 }
                                             }
                                         }
@@ -244,9 +242,9 @@
                                             <a href="~/insan-kaynaklari">İNSAN KAYNAKLARI</a>*@
                                     </div>
                                     <div class="col-xs-6">
-                                        <a href="~/cecilo/urunlerimiz">ÜRÜNLERİMİZ</a>
-                                        <a href="~/cecilo/belgelerimiz">BELGELERİMİZ</a>
-                                        <a href="~/cecilo/iletisim">İLETİŞİM</a>
+                                        <a href="~/cecilo/urunlerimiz">@Resources.Resources.Urunlerimiz</a>
+                                        <a href="~/cecilo/belgelerimiz">@Resources.Resources.Belgelerimiz</a>
+                                        <a href="~/cecilo/iletisim">@Resources.Resources.Iletisim</a>
 
                                     </div>
                                 </div>
@@ -276,7 +274,7 @@
                 <div class="footer-bottom">
                     <div class="row">
                         <div class="col-lg-8 col-xs-text-center col-lg-text-left col-xs-b20 col-lg-b0">
-                            <div class="copyright">&copy; 2019 HER HAKKI SAKLIDIR <a href="http://abatbilgiteknolojileri.com.tr" target="_blank">ABAT BİLGİ TEKNOLOJİLERİ</a></div>
+                            <div class="copyright">&copy; 2019 @Resources.Resources.AllRightReserved <a href="http://abatbilgiteknolojileri.com.tr" target="_blank">ABAT BİLGİ TEKNOLOJİLERİ</a></div>
                             <div class="follow">
                                 <a class="entry" href="#"><i class="fa fa-facebook"></i></a>
                                 <a class="entry" href="#"><i class="fa fa-twitter"></i></a>
@@ -306,6 +304,19 @@
     <script src="~/Assets/js/jquery.throttle.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha256-pTxD+DSzIwmwhOqTFN+DB+nHjO4iAsbgfyFq5K5bcE0=" crossorigin="anonymous"></script>
     <script src="~/Scripts/easyzoom.js"></script>
+
+
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+        (function ($) {
+            $("input[type = 'radio']").click(function () {
+                $(this).parents("form").submit(); // post form
+            });
+
+        })(jQuery);
+    </script>
+
     @RenderSection("scripts", required: false)
 </body>
 </html>

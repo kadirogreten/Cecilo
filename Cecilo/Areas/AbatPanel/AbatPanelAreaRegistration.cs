@@ -17,7 +17,7 @@ namespace Cecilo.Areas.AbatPanel
             context.MapRoute(
                 "AbatPanel_default",
                 "AbatPanel/{controller}/{action}/{id}",
-                new {controller = "home", action = "Index", id = UrlParameter.Optional }
+                new { controller = "home", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

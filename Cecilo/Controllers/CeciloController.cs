@@ -15,7 +15,7 @@ using System.Globalization;
 
 namespace Cecilo.Controllers
 {
-    [RoutePrefix("{culture}")]
+    
     public class CeciloController : BaseController
     {
         StringBuilder sb = new StringBuilder();
@@ -31,35 +31,6 @@ namespace Cecilo.Controllers
         {
             // Validate input
             culture = CultureHelper.GetImplementedCulture(culture);
-            RouteData.Values["culture"] = culture;  // set culture
-
-
-
-            if (culture.Contains("en-US"))
-            {
-                if (returnUrl.Contains("tr-TR"))
-                {
-                    returnUrl = returnUrl.Replace("tr-TR", $"{culture}");
-                }                
-                else
-                {
-                    returnUrl = returnUrl.Replace("en-US", $"{culture}");
-                }
-               
-            }
-            else
-            {
-                if (returnUrl.Contains("tr-TR"))
-                {
-                    returnUrl = returnUrl.Replace("tr-TR", $"{culture}");
-                }               
-                else
-                {
-                    returnUrl = returnUrl.Replace("en-US", $"{culture}");
-                }
-                
-            }
-
 
             // Save culture in a cookie
             HttpCookie cookie = Request.Cookies["_culture"];
@@ -67,6 +38,7 @@ namespace Cecilo.Controllers
                 cookie.Value = culture;   // update cookie value
             else
             {
+
                 cookie = new HttpCookie("_culture");
                 cookie.Value = culture;
                 cookie.Expires = DateTime.Now.AddYears(1);
@@ -75,7 +47,6 @@ namespace Cecilo.Controllers
             return Redirect(returnUrl);
         }
 
-        
         public ActionResult Index()
         {
             return View();

@@ -12,9 +12,9 @@
     <div class="empty-space col-xs-b15 col-sm-b30"></div>
     <div class="breadcrumbs">
         <a href="@Url.Action("index","cecilo")">Anasayfa</a>
-        <a href="~/@Cecilo.CultureHelper.GetCurrentCulture()/c-@Model.Kategori.KategoriAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@Model.Kategori.KategoriAdi</a>
-        <a href="~/@Cecilo.CultureHelper.GetCurrentCulture()/m-@Model.Markalar.MarkaAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@Model.Markalar.MarkaAdi</a>
-        <a href="~/@Cecilo.CultureHelper.GetCurrentCulture()/p-@Model.UrunAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@Model.UrunAdi</a>
+        <a href="~/c-@Model.Kategori.KategoriAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@Model.Kategori.KategoriAdi</a>
+        <a href="~/m-@Model.Markalar.MarkaAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@Model.Markalar.MarkaAdi</a>
+        <a href="~/p-@Model.UrunAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@Model.UrunAdi</a>
     </div>
     <div class="empty-space col-xs-b15 col-sm-b50 col-md-b100"></div>
     <div class="row">
@@ -151,9 +151,9 @@
                 .HtmlAttributes(new { @class = "categories-menu transparent" })
                 .ItemText(m => m.KategoriAdi)
                 .ItemTemplate(
-                                                                                                                        @<text>
-                                                                                                                            <a href="~/@Cecilo.CultureHelper.GetCurrentCulture()/c-@item.KategoriAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@item.KategoriAdi</a>
-                                                                                                                        </text>)
+                 @<text>
+                     <a href="~/c-@item.KategoriAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@item.KategoriAdi</a>
+                 </text>)
             )
 
 

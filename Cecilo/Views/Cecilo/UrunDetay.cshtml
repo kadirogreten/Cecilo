@@ -11,10 +11,10 @@
 <div class="container">
     <div class="empty-space col-xs-b15 col-sm-b30"></div>
     <div class="breadcrumbs">
-        <a href="@Url.Action("index","cecilo")">Anasayfa</a>
-        <a href="~/c-@Model.Kategori.KategoriAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@Model.Kategori.KategoriAdi</a>
+        <a href="@Url.Action("index","cecilo")">@Resources.Resources.Anasayfa</a>
+        <a href="~/c-@Model.Kategori.KategoriAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@Model.Kategori.CategoryTitle</a>
         <a href="~/m-@Model.Markalar.MarkaAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@Model.Markalar.MarkaAdi</a>
-        <a href="~/p-@Model.UrunAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@Model.UrunAdi</a>
+        <a href="~/p-@Model.UrunAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@Model.AltBaslik</a>
     </div>
     <div class="empty-space col-xs-b15 col-sm-b50 col-md-b100"></div>
     <div class="row">
@@ -65,7 +65,7 @@
                                         {
                                             <div class="swiper-slide">
                                                 <div class="product-small-preview-entry">
-                                                    <img width="100" height="100" src="@item.Path" alt="@item.Urun.UrunAdi" />
+                                                    <img width="100" height="100" src="@item.Path" alt="@item.Urun.AltBaslik" />
                                                 </div>
                                             </div>
                                         }
@@ -80,8 +80,8 @@
 
                 </div>
                 <div class="col-sm-6">
-                    <div class="simple-article size-3 grey col-xs-b5">@Model.Kategori.KategoriAdi</div>
-                    <div class="h3 col-xs-b25">@Model.UrunAdi</div>
+                    <div class="simple-article size-3 grey col-xs-b5">@Model.Kategori.CategoryTitle</div>
+                    <div class="h3 col-xs-b25">@Model.AltBaslik</div>
                     <div class="row col-xs-b25">
                         @*<div class="col-sm-6">
                                 <div class="simple-article size-5 grey">PRICE: <span class="color">$@Model.Fiyat</span></div>
@@ -93,7 +93,7 @@
 
                     <div class="row col-xs-b40">
                         <div class="col-sm-3">
-                            <div class="h6 detail-data-title">Renkler:</div>
+                            <div class="h6 detail-data-title">@Resources.Resources.Colors:</div>
                         </div>
                         <div class="col-sm-9">
                             <div class="color-selection size-1">
@@ -114,7 +114,7 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-3">
-                            <div class="h6 detail-data-title size-2">paylaş:</div>
+                            <div class="h6 detail-data-title size-2">@Resources.Resources.Paylas:</div>
                         </div>
                         <div class="col-sm-9">
                             <div class="follow light">
@@ -137,11 +137,20 @@
 
         </div>
         <div class="col-md-3 col-md-pull-9">
-            <div class="h4 col-xs-b10">Kategoriler</div>
+            <div class="h4 col-xs-b10">@Resources.Resources.Kategoriler</div>
             @{
 
                 var db = new ApplicationDbContext();
                 var kategori = db.Kategori.Where(a => a.UstKategoriId == null);
+                if (Cecilo.CultureHelper.GetCurrentNeutralCulture() == "en")
+                {
+                    kategori = db.Kategori.Where(a => a.UstKategoriId == null).Where(a => a.Lang == Cecilo.LanguageId.En);
+                }
+                else if (Cecilo.CultureHelper.GetCurrentNeutralCulture() == "tr")
+                {
+                    kategori = db.Kategori.Where(a => a.UstKategoriId == null).Where(a => a.Lang == Cecilo.LanguageId.Tr);
+                }
+
             }
 
 
@@ -149,18 +158,18 @@
                 .EmptyContent("No locations have been defined yet!")
                 .Children(m => m.AltKategoriler)
                 .HtmlAttributes(new { @class = "categories-menu transparent" })
-                .ItemText(m => m.KategoriAdi)
+                .ItemText(m => m.CategoryTitle)
                 .ItemTemplate(
-                 @<text>
-                     <a href="~/c-@item.KategoriAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@item.KategoriAdi</a>
-                 </text>)
+                        @<text>
+                            <a href="~/c-@item.KategoriAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@item.CategoryTitle</a>
+                        </text>)
             )
 
 
 
             <div class="empty-space col-xs-b25 col-sm-b50"></div>
 
-            <div class="h4 col-xs-b25">Popülar Etiketler</div>
+            <div class="h4 col-xs-b25">@Resources.Resources.PopulerEtiketler</div>
             <div class="tags light clearfix">
                 @{
                     if (Model.Etiketler != null)

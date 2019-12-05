@@ -126,20 +126,65 @@
   <data name="Anasayfa" xml:space="preserve">
     <value>Anasayfa</value>
   </data>
+  <data name="Baglantilarimiz" xml:space="preserve">
+    <value>Bağlantılarımız</value>
+  </data>
+  <data name="BelgelerAlt" xml:space="preserve">
+    <value>Şirketimize Ait Belgeler Aşağıdadır.</value>
+  </data>
   <data name="Belgelerimiz" xml:space="preserve">
     <value>Belgelerimiz</value>
+  </data>
+  <data name="Colors" xml:space="preserve">
+    <value>Renkler</value>
+  </data>
+  <data name="EPOSTA" xml:space="preserve">
+    <value>E-Posta</value>
+  </data>
+  <data name="EpostaContact" xml:space="preserve">
+    <value>E-Posta</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Lütfen zorunlu alanları doldurunuz!</value>
+  </data>
+  <data name="Etiketler" xml:space="preserve">
+    <value>Etiketler</value>
   </data>
   <data name="ExploreOneCikanUrunler" xml:space="preserve">
     <value>Öne Çıkan Ürünleri Keşfet</value>
   </data>
+  <data name="FastLinks" xml:space="preserve">
+    <value>Hızlı Linkler</value>
+  </data>
   <data name="FooterArticle" xml:space="preserve">
     <value>Ev işlerinizin baş yardımcısı küçük ev aletleri, başka bir deyişle Cecilo Teknolojik Minikler her zaman yanınızda! Ayrıca en uygun fiyatlı küçük ev aletlerini satın alabilmek için bizimde ürünlerimize göz atmayı unutmayın!</value>
+  </data>
+  <data name="FormSuccess" xml:space="preserve">
+    <value>Talebiniz başarılı bir şekilde gönderildi.</value>
+  </data>
+  <data name="Gosteriliyor" xml:space="preserve">
+    <value>Gösteriliyor</value>
   </data>
   <data name="Iletisim" xml:space="preserve">
     <value>İletişim</value>
   </data>
+  <data name="Kategoriler" xml:space="preserve">
+    <value>Kategoriler</value>
+  </data>
+  <data name="Konu" xml:space="preserve">
+    <value>Konu</value>
+  </data>
+  <data name="Message" xml:space="preserve">
+    <value>Mesajınız</value>
+  </data>
+  <data name="NameSurname" xml:space="preserve">
+    <value>Adınız Soyadınız</value>
+  </data>
   <data name="OneCikanUrunler" xml:space="preserve">
     <value>Öne Çıkan Ürünler</value>
+  </data>
+  <data name="Paylas" xml:space="preserve">
+    <value>Paylaş</value>
   </data>
   <data name="PopulerEtiketler" xml:space="preserve">
     <value>Popüler Etiketler</value>
@@ -150,11 +195,38 @@
   <data name="PopulerUrunleriKesfet" xml:space="preserve">
     <value>Popüler Ürünleri Keşfet</value>
   </data>
+  <data name="SendButton" xml:space="preserve">
+    <value>Gönder</value>
+  </data>
+  <data name="SorularinizIcin" xml:space="preserve">
+    <value>Sorularınız İçin Hazırız</value>
+  </data>
+  <data name="SorunuzMuVar" xml:space="preserve">
+    <value>Bir Sorunuz Mu Var</value>
+  </data>
+  <data name="SOSYALMEDYA" xml:space="preserve">
+    <value>Sosyal Medya</value>
+  </data>
+  <data name="TEL" xml:space="preserve">
+    <value>Telefon</value>
+  </data>
+  <data name="TelefonContact" xml:space="preserve">
+    <value>Telefon</value>
+  </data>
+  <data name="Toplam" xml:space="preserve">
+    <value>Toplam</value>
+  </data>
   <data name="TumUrunlerimiz" xml:space="preserve">
     <value>Tüm Ürünlerimiz</value>
   </data>
+  <data name="Urun" xml:space="preserve">
+    <value>Ürün</value>
+  </data>
   <data name="Urunlerimiz" xml:space="preserve">
     <value>Ürünlerimiz</value>
+  </data>
+  <data name="VerifyCode" xml:space="preserve">
+    <value>Doğrulama Kodunuz</value>
   </data>
   <data name="YeniGelenler" xml:space="preserve">
     <value>Yeni Gelenler</value>

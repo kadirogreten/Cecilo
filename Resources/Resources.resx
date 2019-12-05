@@ -126,23 +126,68 @@
   <data name="Anasayfa" xml:space="preserve">
     <value>Home</value>
   </data>
+  <data name="Baglantilarimiz" xml:space="preserve">
+    <value>Our Links</value>
+  </data>
+  <data name="BelgelerAlt" xml:space="preserve">
+    <value>The documents of our company are as follows.</value>
+  </data>
   <data name="Belgelerimiz" xml:space="preserve">
     <value>Documents</value>
+  </data>
+  <data name="Colors" xml:space="preserve">
+    <value>Colors</value>
+  </data>
+  <data name="EPOSTA" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="EpostaContact" xml:space="preserve">
+    <value>E-Mail</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Please fill in the required fields!</value>
+  </data>
+  <data name="Etiketler" xml:space="preserve">
+    <value>Tags</value>
   </data>
   <data name="ExploreOneCikanUrunler" xml:space="preserve">
     <value>Explore Featured Products</value>
   </data>
+  <data name="FastLinks" xml:space="preserve">
+    <value>Fast Links</value>
+  </data>
   <data name="FooterArticle" xml:space="preserve">
     <value>The chief assistant of your household chores is small appliances, in other words Cecilo Technological Tinyers are always with you! Also, don't forget to take a look at our products in order to buy the most affordable small home appliances!</value>
+  </data>
+  <data name="FormSuccess" xml:space="preserve">
+    <value>Your message has been sent successfully.</value>
+  </data>
+  <data name="Gosteriliyor" xml:space="preserve">
+    <value>Showing</value>
   </data>
   <data name="Iletisim" xml:space="preserve">
     <value>Contact</value>
   </data>
+  <data name="Kategoriler" xml:space="preserve">
+    <value>Categories</value>
+  </data>
+  <data name="Konu" xml:space="preserve">
+    <value>Subject</value>
+  </data>
+  <data name="Message" xml:space="preserve">
+    <value>Your Message</value>
+  </data>
+  <data name="NameSurname" xml:space="preserve">
+    <value>Name Surname</value>
+  </data>
   <data name="OneCikanUrunler" xml:space="preserve">
     <value>Featured Products</value>
   </data>
+  <data name="Paylas" xml:space="preserve">
+    <value>Share</value>
+  </data>
   <data name="PopulerEtiketler" xml:space="preserve">
-    <value>PopularTags</value>
+    <value>Popular Tags</value>
   </data>
   <data name="PopulerUrunler" xml:space="preserve">
     <value>Popular Products</value>
@@ -150,11 +195,38 @@
   <data name="PopulerUrunleriKesfet" xml:space="preserve">
     <value>Explore Popular Products</value>
   </data>
+  <data name="SendButton" xml:space="preserve">
+    <value>Send</value>
+  </data>
+  <data name="SorularinizIcin" xml:space="preserve">
+    <value>WE ARE READY FOR YOUR QUESTIONS</value>
+  </data>
+  <data name="SorunuzMuVar" xml:space="preserve">
+    <value>Do You Have Any Questions</value>
+  </data>
+  <data name="SOSYALMEDYA" xml:space="preserve">
+    <value>SOCIAL MEDIA</value>
+  </data>
+  <data name="TEL" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+  <data name="TelefonContact" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+  <data name="Toplam" xml:space="preserve">
+    <value>Total</value>
+  </data>
   <data name="TumUrunlerimiz" xml:space="preserve">
     <value>All Products</value>
   </data>
+  <data name="Urun" xml:space="preserve">
+    <value>Product</value>
+  </data>
   <data name="Urunlerimiz" xml:space="preserve">
     <value>Products</value>
+  </data>
+  <data name="VerifyCode" xml:space="preserve">
+    <value>Your Verify Code</value>
   </data>
   <data name="YeniGelenler" xml:space="preserve">
     <value>New Products</value>

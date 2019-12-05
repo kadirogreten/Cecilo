@@ -249,6 +249,8 @@
     <Content Include="Assets\img\icon-9.png" />
     <Content Include="Assets\img\logo-1.png" />
     <Content Include="Assets\img\logo-2.png" />
+    <Content Include="Assets\img\logo-lg.png" />
+    <Content Include="Assets\img\logo-sm.png" />
     <Content Include="Assets\img\product-1.png" />
     <Content Include="Assets\img\product-10.jpg" />
     <Content Include="Assets\img\product-100.png" />
@@ -1981,6 +1983,10 @@
     <Compile Include="Migrations\201912031127147_lang1.Designer.cs">
       <DependentUpon>201912031127147_lang1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201912051209557_title.cs" />
+    <Compile Include="Migrations\201912051209557_title.Designer.cs">
+      <DependentUpon>201912051209557_title.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdminViewModel.cs" />
@@ -2068,6 +2074,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201912031127147_lang1.resx">
       <DependentUpon>201912031127147_lang1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912051209557_title.resx">
+      <DependentUpon>201912051209557_title.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

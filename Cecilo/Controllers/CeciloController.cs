@@ -15,7 +15,7 @@ using System.Globalization;
 
 namespace Cecilo.Controllers
 {
-    
+
     public class CeciloController : BaseController
     {
         StringBuilder sb = new StringBuilder();
@@ -54,11 +54,32 @@ namespace Cecilo.Controllers
         [Route("{title}")]
         public ActionResult Hakkimizda(string title)
         {
+            HakkimizdaMenu menu = new HakkimizdaMenu();
+
             if (title == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            HakkimizdaMenu menu = db.HakkimizdaMenu.Where(a => a.MenuAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-") == title.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")).FirstOrDefault();
+            if (CultureHelper.GetCurrentNeutralCulture() == "tr")
+            {
+                menu = db.HakkimizdaMenu.Where(a => a.MenuAdi
+               .Replace(" ", "-")
+               .Replace(".", "")
+               .Replace("İ", "i")
+               .Replace("I", "i")
+               .Replace("&", "-") == title.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-") && a.Lang == LanguageId.Tr).FirstOrDefault();
+            }
+            else if (CultureHelper.GetCurrentNeutralCulture() == "en")
+            {
+                menu = db.HakkimizdaMenu.Where(a => a.MenuAdi
+                .Replace(" ", "-")
+                .Replace(".", "")
+                .Replace("İ", "i")
+                .Replace("I", "i")
+                .Replace("&", "-") == title.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-") && a.Lang == LanguageId.En).FirstOrDefault();
+            }
+
+
             if (menu == null)
             {
                 return HttpNotFound();
@@ -95,13 +116,28 @@ namespace Cecilo.Controllers
                 ViewBag.AdaGoreSirala2 = string.Empty;
             }
 
+            List<Urun> urunler = new List<Urun>();
 
-            var urunler = db.Urun.Include(k => k.Kategori)
+            if (CultureHelper.GetCurrentNeutralCulture() == "en")
+            {
+                urunler = db.Urun.Include(k => k.Kategori)
                 .Include(a => a.Renkler)
                 .Include(a => a.Resimler)
                 .Include(a => a.Markalar)
                 .Include(a => a.Etiketler)
-                .Include(a => a.Kategori).ToList();
+                .Include(a => a.Kategori).Where(a => a.Lang == LanguageId.En).ToList();
+            }
+            else if (CultureHelper.GetCurrentNeutralCulture() == "tr")
+            {
+                urunler = db.Urun.Include(k => k.Kategori)
+                .Include(a => a.Renkler)
+                .Include(a => a.Resimler)
+                .Include(a => a.Markalar)
+                .Include(a => a.Etiketler)
+                .Include(a => a.Kategori).Where(a => a.Lang == LanguageId.Tr).ToList();
+            }
+
+
             //KategoriAgaciOlustur(kategoriler.ToList());
 
 
@@ -149,16 +185,36 @@ namespace Cecilo.Controllers
                 ViewBag.AdaGoreSirala3 = string.Empty;
             }
 
-            var kategoriUrunleri = db.Urun
-                .Include(a => a.Kategori)
-                .Include(a => a.Markalar)
-                .Include(a => a.Renkler)
-                .Include(a => a.Resimler)
-                .Include(a => a.Etiketler)
-                .Where((a => a.Kategori.KategoriAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-") == title.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")
-                || a.Kategori.UstKategori.KategoriAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-") == title.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")
-                || a.Kategori.UstKategori.UstKategori.KategoriAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-") == title.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")
-                )).ToList();
+            List<Urun> kategoriUrunleri = new List<Urun>();
+
+            if (CultureHelper.GetCurrentNeutralCulture() == "tr")
+            {
+                kategoriUrunleri = db.Urun
+               .Include(a => a.Kategori)
+               .Include(a => a.Markalar)
+               .Include(a => a.Renkler)
+               .Include(a => a.Resimler)
+               .Include(a => a.Etiketler)
+               .Where((a => a.Kategori.KategoriAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-") == title.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")
+               || a.Kategori.UstKategori.KategoriAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-") == title.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")
+               || a.Kategori.UstKategori.UstKategori.KategoriAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-") == title.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")
+               )).Where(a=>a.Lang == LanguageId.Tr).ToList();
+            }
+            else if (CultureHelper.GetCurrentNeutralCulture() == "en")
+            {
+                kategoriUrunleri = db.Urun
+               .Include(a => a.Kategori)
+               .Include(a => a.Markalar)
+               .Include(a => a.Renkler)
+               .Include(a => a.Resimler)
+               .Include(a => a.Etiketler)
+               .Where((a => a.Kategori.KategoriAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-") == title.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")
+               || a.Kategori.UstKategori.KategoriAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-") == title.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")
+               || a.Kategori.UstKategori.UstKategori.KategoriAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-") == title.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")
+               )).Where(a => a.Lang == LanguageId.En).ToList();
+            }
+
+            
 
 
             if (!String.IsNullOrEmpty(ara))
@@ -169,6 +225,7 @@ namespace Cecilo.Controllers
 
             int sayfaBuyuklugu = 6;
             int sayfaNumarasi = (sayfaNo ?? 1);
+
 
 
             return View(kategoriUrunleri.ToPagedList(sayfaNumarasi, sayfaBuyuklugu));
@@ -206,13 +263,37 @@ namespace Cecilo.Controllers
                 ViewBag.AdaGoreSirala4 = string.Empty;
             }
 
-            var markaUrunleri = db.Urun
+            List<Urun> markaUrunleri = new List<Urun>();
+
+            if (CultureHelper.GetCurrentNeutralCulture() == "tr")
+            {
+                markaUrunleri = db.Urun
                 .Include(a => a.Kategori)
                 .Include(a => a.Markalar)
                 .Include(a => a.Renkler)
                 .Include(a => a.Resimler)
                 .Include(a => a.Etiketler)
-                .Where((a => a.Markalar.MarkaAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-") == title.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-"))).ToList();
+                .Where((a => a.Markalar.MarkaAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-") == title.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")))
+                .Where(a=>a.Lang == LanguageId.Tr)
+                .ToList();
+            }
+            else if (CultureHelper.GetCurrentNeutralCulture() == "en")
+            {
+                markaUrunleri = db.Urun
+                 .Include(a => a.Kategori)
+                 .Include(a => a.Markalar)
+                 .Include(a => a.Renkler)
+                 .Include(a => a.Resimler)
+                 .Include(a => a.Etiketler)
+                 .Where((a => a.Markalar.MarkaAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-") == title.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")))
+                 .Where(a => a.Lang == LanguageId.En)
+                 .ToList();
+            }
+
+
+
+
+             
 
             if (!String.IsNullOrEmpty(ara))
             {
@@ -235,14 +316,32 @@ namespace Cecilo.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Urun urun = db.Urun
+
+            Urun urun = new Urun();
+
+            if (CultureHelper.GetCurrentNeutralCulture() == "tr")
+            {
+               urun = db.Urun
                 .Include(a => a.Kategori)
                 .Include(a => a.Renkler)
                 .Include(a => a.Resimler)
                 .Include(a => a.Markalar)
                 .Include(a => a.Etiketler)
                 .Where(a => a.UrunAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-") == title.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-"))
+                .Where(a=>a.Lang == LanguageId.Tr)
                 .FirstOrDefault();
+            }else if (CultureHelper.GetCurrentNeutralCulture() == "en")
+            {
+                urun = db.Urun
+                .Include(a => a.Kategori)
+                .Include(a => a.Renkler)
+                .Include(a => a.Resimler)
+                .Include(a => a.Markalar)
+                .Include(a => a.Etiketler)
+                .Where(a => a.UrunAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-") == title.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-"))
+                .Where(a => a.Lang == LanguageId.En)
+                .FirstOrDefault();
+            }
             if (urun == null)
             {
                 return HttpNotFound();
@@ -258,8 +357,8 @@ namespace Cecilo.Controllers
         public ActionResult Iletisim(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
-               message == ManageMessageId.FormSuccess ? "Talebiniz başarılı bir şekilde gönderildi."
-               : message == ManageMessageId.Error ? "Lütfen zorunlu alanları doldurunuz!"
+               message == ManageMessageId.FormSuccess ? $"{Resources.Resources.FormSuccess}"
+               : message == ManageMessageId.Error ? $"{Resources.Resources.Error}"
                : "";
             return View();
         }
@@ -284,8 +383,8 @@ namespace Cecilo.Controllers
 
                 message = ManageMessageId.FormSuccess;
 
-                return Redirect($"~/{CultureHelper.GetCurrentCulture()}/iletisim?Message={message}");
-                //return RedirectToAction("iletisim", new { Message = message });
+                //return Redirect($"~/{CultureHelper.GetCurrentCulture()}/iletisim?Message={message}");
+                return RedirectToAction("iletisim", new { Message = message });
             }
             else
             {

@@ -15,7 +15,7 @@ namespace Cecilo.Areas.AbatPanel.Controllers
     [Authorize]
     public class HakkimizdaMenuController : Controller
     {
-        
+
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: HakkimizdaMenu
@@ -62,11 +62,15 @@ namespace Cecilo.Areas.AbatPanel.Controllers
                 {
                     fileName = Guid.NewGuid() + Path.GetExtension(resim.FileName);
                     resim.SaveAs(Path.Combine(Server.MapPath("/Assets/hakkimizda/"), fileName));
-                    db.HakkimizdaMenu.Add(new HakkimizdaMenu {
+                    db.HakkimizdaMenu.Add(new HakkimizdaMenu
+                    {
                         Image = "/Assets/hakkimizda/" + fileName,
-                        MenuAdi = hakkimizdaMenu.MenuAdi, MenuBaslik = hakkimizdaMenu.MenuBaslik,
+                        MenuAdi = hakkimizdaMenu.MenuAdi,
+                        MenuBaslik = hakkimizdaMenu.MenuBaslik,
                         Aciklama = hakkimizdaMenu.Aciklama,
-                        Detail = hakkimizdaMenu.Detail });
+                        Detail = hakkimizdaMenu.Detail,
+                        Lang = hakkimizdaMenu.Lang
+                    });
                     //db.Entry(new ProjeResim { Path = "/images/Projeler/" + fileName, Sira = sira, ProjeId = proje.Id }).State = EntityState.Modified;
 
                 }
@@ -81,6 +85,7 @@ namespace Cecilo.Areas.AbatPanel.Controllers
                 ViewBag.Mesaj = "Ekleme Başarılı.";
                 ViewBag.Status = "success";
                 ViewBag.Baslik = "Harika";
+                
                 db.SaveChanges();
 
                 return View(hakkimizdaMenu);

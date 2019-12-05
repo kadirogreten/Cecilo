@@ -14,11 +14,11 @@
 <div class="container">
     <div class="empty-space col-xs-b15 col-sm-b30"></div>
     <div class="breadcrumbs">
-        <a href="@Url.Action("index","cecilo")">Anasayfa</a>
+        <a href="@Url.Action("index","cecilo")">@Resources.Resources.Anasayfa</a>
 
 
 
-        <a href="@Url.Action("urunlerimiz","cecilo")">Ürünler</a>
+        <a href="@Url.Action("urunlerimiz","cecilo")">@Resources.Resources.Urunlerimiz</a>
     </div>
     <div class="empty-space col-xs-b15 col-sm-b50 col-md-b100"></div>
     <div class="row">
@@ -74,10 +74,10 @@
             <div class="empty-space col-xs-b35 col-md-b70"></div>
 
             <div class="align-inline spacing-1">
-                <div class="h4">Ürünlerimiz</div>
+                <div class="h4">@Resources.Resources.Urunlerimiz</div>
             </div>
             <div class="align-inline spacing-1">
-                <div class="simple-article size-1">TOPLAM <b class="grey"></b> <b class="grey">@Model.Count</b> ÜRÜN GÖSTERİLİYOR</div>
+                <div class="simple-article size-1">@Resources.Resources.Toplam <b class="grey"></b> <b class="grey">@Model.Count</b> @Resources.Resources.Urun @Resources.Resources.Gosteriliyor</div>
             </div>
             @*<div class="align-inline spacing-1 hidden-xs">
                     <a class="pagination toggle-products-view active"><img src="~/Assets/img/icon-14.png" alt="" /><img src="~/Assets/img/icon-15.png" alt="" /></a>
@@ -118,7 +118,7 @@
                                         <div class="product-shortcode style-1">
                                             <div class="title">
                                                 <div class="simple-article size-1 color col-xs-b5"><a href="~/c-@item.Kategori.KategoriAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@item.Kategori.KategoriAdi</a></div>
-                                                <div class="h6 animate-to-green"><a href="~/p-@item.UrunAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@item.UrunAdi</a></div>
+                                                <div class="h6 animate-to-green"><a href="~/p-@item.UrunAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@item.AltBaslik</a></div>
                                             </div>
                                             <div class="preview">
                                                 <a href="~/p-@item.UrunAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">
@@ -189,7 +189,7 @@
             <div class="empty-space col-md-b70"></div>
         </div>
         <div class="col-md-3 col-md-pull-9">
-            <div class="h4 col-xs-b10">Kategoriler</div>
+            <div class="h4 col-xs-b10">@Resources.Resources.Kategoriler</div>
 
             @*@Html.Raw(ViewBag.Kategoriler)*@
 
@@ -197,6 +197,15 @@
 
                 var db = new ApplicationDbContext();
                 var kategori = db.Kategori.Where(a => a.UstKategoriId == null);
+                if (Cecilo.CultureHelper.GetCurrentNeutralCulture() == "en")
+                {
+                    kategori = db.Kategori.Where(a => a.UstKategoriId == null).Where(a => a.Lang == Cecilo.LanguageId.En);
+                }
+                else if (Cecilo.CultureHelper.GetCurrentNeutralCulture() == "tr")
+                {
+                    kategori = db.Kategori.Where(a => a.UstKategoriId == null).Where(a => a.Lang == Cecilo.LanguageId.Tr);
+                }
+
             }
 
 
@@ -204,11 +213,11 @@
                 .EmptyContent("No locations have been defined yet!")
                 .Children(m => m.AltKategoriler)
                 .HtmlAttributes(new { @class = "categories-menu transparent" })
-                .ItemText(m => m.KategoriAdi)
+                .ItemText(m => m.CategoryTitle)
                 .ItemTemplate(
-                @<text>
-                    <a href="~/c-@item.KategoriAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@item.KategoriAdi</a>
-                </text>)
+                        @<text>
+                            <a href="~/c-@item.KategoriAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@item.CategoryTitle</a>
+                        </text>)
             )
 
 
@@ -220,7 +229,7 @@
 
             <div class="empty-space col-xs-b25 col-sm-b50"></div>
 
-            <div class="h4 col-xs-b25">Popülar Etiketler</div>
+            <div class="h4 col-xs-b25">@Resources.Resources.PopulerEtiketler</div>
             <div class="tags light clearfix">
                 @{
                     var etiketler = db.Etikets.OrderByDescending(a => a.Sira).ToList();

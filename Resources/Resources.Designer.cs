@@ -88,11 +88,74 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Our Links.
+        /// </summary>
+        public static string Baglantilarimiz {
+            get {
+                return ResourceManager.GetString("Baglantilarimiz", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The documents of our company are as follows..
+        /// </summary>
+        public static string BelgelerAlt {
+            get {
+                return ResourceManager.GetString("BelgelerAlt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Documents.
         /// </summary>
         public static string Belgelerimiz {
             get {
                 return ResourceManager.GetString("Belgelerimiz", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Colors.
+        /// </summary>
+        public static string Colors {
+            get {
+                return ResourceManager.GetString("Colors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email.
+        /// </summary>
+        public static string EPOSTA {
+            get {
+                return ResourceManager.GetString("EPOSTA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to E-Mail.
+        /// </summary>
+        public static string EpostaContact {
+            get {
+                return ResourceManager.GetString("EpostaContact", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please fill in the required fields!.
+        /// </summary>
+        public static string Error {
+            get {
+                return ResourceManager.GetString("Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tags.
+        /// </summary>
+        public static string Etiketler {
+            get {
+                return ResourceManager.GetString("Etiketler", resourceCulture);
             }
         }
         
@@ -106,11 +169,38 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fast Links.
+        /// </summary>
+        public static string FastLinks {
+            get {
+                return ResourceManager.GetString("FastLinks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The chief assistant of your household chores is small appliances, in other words Cecilo Technological Tinyers are always with you! Also, don&apos;t forget to take a look at our products in order to buy the most affordable small home appliances!.
         /// </summary>
         public static string FooterArticle {
             get {
                 return ResourceManager.GetString("FooterArticle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your message has been sent successfully..
+        /// </summary>
+        public static string FormSuccess {
+            get {
+                return ResourceManager.GetString("FormSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Showing.
+        /// </summary>
+        public static string Gosteriliyor {
+            get {
+                return ResourceManager.GetString("Gosteriliyor", resourceCulture);
             }
         }
         
@@ -124,6 +214,42 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Categories.
+        /// </summary>
+        public static string Kategoriler {
+            get {
+                return ResourceManager.GetString("Kategoriler", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Subject.
+        /// </summary>
+        public static string Konu {
+            get {
+                return ResourceManager.GetString("Konu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your Message.
+        /// </summary>
+        public static string Message {
+            get {
+                return ResourceManager.GetString("Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name Surname.
+        /// </summary>
+        public static string NameSurname {
+            get {
+                return ResourceManager.GetString("NameSurname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Featured Products.
         /// </summary>
         public static string OneCikanUrunler {
@@ -133,7 +259,16 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to PopularTags.
+        ///   Looks up a localized string similar to Share.
+        /// </summary>
+        public static string Paylas {
+            get {
+                return ResourceManager.GetString("Paylas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Popular Tags.
         /// </summary>
         public static string PopulerEtiketler {
             get {
@@ -160,6 +295,69 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Send.
+        /// </summary>
+        public static string SendButton {
+            get {
+                return ResourceManager.GetString("SendButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to WE ARE READY FOR YOUR QUESTIONS.
+        /// </summary>
+        public static string SorularinizIcin {
+            get {
+                return ResourceManager.GetString("SorularinizIcin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do You Have Any Questions.
+        /// </summary>
+        public static string SorunuzMuVar {
+            get {
+                return ResourceManager.GetString("SorunuzMuVar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SOCIAL MEDIA.
+        /// </summary>
+        public static string SOSYALMEDYA {
+            get {
+                return ResourceManager.GetString("SOSYALMEDYA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone.
+        /// </summary>
+        public static string TEL {
+            get {
+                return ResourceManager.GetString("TEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone.
+        /// </summary>
+        public static string TelefonContact {
+            get {
+                return ResourceManager.GetString("TelefonContact", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total.
+        /// </summary>
+        public static string Toplam {
+            get {
+                return ResourceManager.GetString("Toplam", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All Products.
         /// </summary>
         public static string TumUrunlerimiz {
@@ -169,11 +367,29 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Product.
+        /// </summary>
+        public static string Urun {
+            get {
+                return ResourceManager.GetString("Urun", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Products.
         /// </summary>
         public static string Urunlerimiz {
             get {
                 return ResourceManager.GetString("Urunlerimiz", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your Verify Code.
+        /// </summary>
+        public static string VerifyCode {
+            get {
+                return ResourceManager.GetString("VerifyCode", resourceCulture);
             }
         }
         

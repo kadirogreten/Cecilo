@@ -3,6 +3,7 @@
 
 @{
     var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
+    var db = new ApplicationDbContext();
 }
 @helper selected(string c, string culture)
 {
@@ -79,7 +80,7 @@
                                 <div class="language-toggle header-toggle-animation">
                                     @Html.ActionLink("Türkçe", "SetCulture", new { culture = "tr", returnUrl = this.Request.RawUrl }, null)
                                     @Html.ActionLink("English", "SetCulture", new { culture = "en-us", returnUrl = this.Request.RawUrl }, null)
-                                    
+
                                 </div>
 
                             </div>
@@ -97,7 +98,7 @@
                 <div class="content-margins">
                     <div class="row">
                         <div class="col-xs-4 col-sm-4">
-                            <a id="logo" href="@Url.Action("index","Cecilo")"><img src="~/Assets/img/logo-2.png" alt="Cecilo" /> Cecilo </a>
+                            <a id="logo" href="@Url.Action("index","Cecilo")"><img src="~/Assets/img/logo-lg.png" alt="Cecilo" /></a>
 
                         </div>
                         <div class="col-xs-8 col-sm-8 text-right">
@@ -110,33 +111,69 @@
                                             <a href="@Url.Action("index","Cecilo")">@Resources.Resources.Anasayfa</a>
 
                                         </li>
-                                        <li>
-                                            @{
-                                                var db = new ApplicationDbContext();
-                                                var menu = db.HakkimizdaMenu.Where(b => b.MenuAdi.Contains("Hakkımızda")).FirstOrDefault();
 
-                                                if (menu != null)
-                                                {
-                                                    <a href="~/@menu.MenuAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@menu.MenuAdi</a>
-                                                    <ul>
-                                                        <li>
-                                                            @{
-                                                                var menuList = db.HakkimizdaMenu.Where(a => a.MenuAdi.Contains("Hakkımızda") == false).ToList();
+                                        @if (Cecilo.CultureHelper.GetCurrentNeutralCulture() == "tr")
+                                        {
+                                            <li>
+                                                @{
+                                                    
+                                                    var menuTop = db.HakkimizdaMenu.Where(b => b.MenuAdi.Contains("Hakkımızda") && b.Lang == Cecilo.LanguageId.Tr).FirstOrDefault();
 
-                                                                foreach (var item in menuList)
-                                                                {
-                                                                    <a href="~/@item.MenuAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@item.MenuAdi</a>
+                                                    if (menuTop != null)
+                                                    {
+                                                        <a href="~/@menuTop.MenuAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@menuTop.MenuBaslik</a>
+                                                        <ul>
+                                                            <li>
+                                                                @{
+                                                                    var menuList = db.HakkimizdaMenu.Where(a => a.MenuAdi.Contains("Hakkımızda") == false && a.Lang == Cecilo.LanguageId.Tr).ToList();
+
+                                                                    foreach (var item in menuList)
+                                                                    {
+                                                                        <a href="~/@item.MenuAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@item.MenuBaslik</a>
+                                                                    }
                                                                 }
-                                                            }
 
-                                                        </li>
-                                                    </ul>
+                                                            </li>
+                                                        </ul>
+                                                    }
+
+
                                                 }
 
+                                            </li>
+                                        }
+                                        else if (Cecilo.CultureHelper.GetCurrentNeutralCulture() == "en")
+                                        {
+                                            <li>
+                                                @{
+                                                    
+                                                    var menu = db.HakkimizdaMenu.Where(b => b.MenuAdi.Contains("Hakkımızda") && b.Lang == Cecilo.LanguageId.En).FirstOrDefault();
 
-                                            }
+                                                    if (menu != null)
+                                                    {
+                                                        <a href="~/@menu.MenuAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@menu.MenuBaslik</a>
+                                                        <ul>
+                                                            <li>
+                                                                @{
+                                                                    var menuList = db.HakkimizdaMenu.Where(a => a.MenuAdi.Contains("Hakkımızda") == false && a.Lang == Cecilo.LanguageId.En).ToList();
 
-                                        </li>
+                                                                    foreach (var item in menuList)
+                                                                    {
+                                                                        <a href="~/@item.MenuAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@item.MenuBaslik</a>
+                                                                    }
+                                                                }
+
+                                                            </li>
+                                                        </ul>
+                                                    }
+
+
+                                                }
+
+                                            </li>
+                                        }
+
+
                                         <li class="megamenu-wrapper">
                                             <a href="@Url.Action("urunlerimiz","Cecilo")">@Resources.Resources.Urunlerimiz</a>
                                             <div class="menu-toggle"></div>
@@ -197,7 +234,7 @@
                 <div class="footer-top">
                     <div class="row">
                         <div class="col-sm-6 col-md-3 col-xs-b30 col-md-b0">
-                            <img src="~/Assets/img/logo-2.png" alt="" width="100" height="60" />
+                            <img src="~/Assets/img/logo-lg.png" alt="" width="100" />
                             <div class="empty-space col-xs-b20"></div>
                             <div class="simple-article size-2 light fulltransparent">
                                 @Resources.Resources.FooterArticle
@@ -214,32 +251,47 @@
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-3 col-xs-b30 col-md-b0">
-                            <h6 class="h6 light">Hızlı linkler</h6>
+                            <h6 class="h6 light">@Resources.Resources.FastLinks</h6>
                             <div class="empty-space col-xs-b20"></div>
                             <div class="footer-column-links">
                                 <div class="row">
                                     <div class="col-xs-6">
                                         <a href="@Url.Action("index","cecilo")">@Resources.Resources.Anasayfa</a>
                                         @{
-
-                                            menu = db.HakkimizdaMenu.Where(b => b.MenuAdi.Contains("Hakkımızda")).FirstOrDefault();
-
-                                            if (menu != null)
+                                            if (Cecilo.CultureHelper.GetCurrentNeutralCulture() == "en")
                                             {
-                                                <a href="~/@menu.MenuAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@menu.MenuAdi</a>
+                                                var menuBot = db.HakkimizdaMenu.Where(b => b.MenuAdi.Contains("Hakkımızda") && b.Lang == Cecilo.LanguageId.En).FirstOrDefault();
 
-                                                var menuList = db.HakkimizdaMenu.Where(a => a.MenuAdi.Contains("Hakkımızda") == false).ToList();
-                                                foreach (var item in menuList)
+                                                if (menuBot != null)
                                                 {
-                                                    <a href="~/@item.MenuAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@item.MenuAdi</a>
+                                                    <a href="~/@menuBot.MenuAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@menuBot.MenuBaslik</a>
+
+                                                    var menuList = db.HakkimizdaMenu.Where(a => a.MenuAdi.Contains("Hakkımızda") == false && a.Lang == Cecilo.LanguageId.En).ToList();
+                                                    foreach (var item in menuList)
+                                                    {
+                                                        <a href="~/@item.MenuAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@item.MenuBaslik</a>
+                                                    }
                                                 }
                                             }
+                                            else if (Cecilo.CultureHelper.GetCurrentNeutralCulture() == "tr")
+                                            {
+                                                var menuBot = db.HakkimizdaMenu.Where(b => b.MenuAdi.Contains("Hakkımızda") && b.Lang == Cecilo.LanguageId.Tr).FirstOrDefault();
+
+                                                if (menuBot != null)
+                                                {
+                                                    <a href="~/@menuBot.MenuAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@menuBot.MenuBaslik</a>
+
+                                                    var menuList = db.HakkimizdaMenu.Where(a => a.MenuAdi.Contains("Hakkımızda") == false && a.Lang == Cecilo.LanguageId.Tr).ToList();
+                                                    foreach (var item in menuList)
+                                                    {
+                                                        <a href="~/@item.MenuAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@item.MenuBaslik</a>
+                                                    }
+                                                }
+                                            }
+
                                         }
 
-                                        @*<a href="~/hakkimizda">HAKKIMIZDA</a>
-                                            <a href="~/vizyonumuz">VİZYONUMUZ</a>
-                                            <a href="~/misyonumuz">MİSYONUMUZ</a>
-                                            <a href="~/insan-kaynaklari">İNSAN KAYNAKLARI</a>*@
+
                                     </div>
                                     <div class="col-xs-6">
                                         <a href="~/cecilo/urunlerimiz">@Resources.Resources.Urunlerimiz</a>
@@ -253,7 +305,7 @@
                         <div class="clear visible-sm"></div>
 
                         <div class="col-sm-6 col-md-6">
-                            <h6 class="h6 light">ETİKETLER</h6>
+                            <h6 class="h6 light">@Resources.Resources.Etiketler</h6>
                             <div class="empty-space col-xs-b20"></div>
                             <div class="tags clearfix">
                                 <a class="tag">Mutfak Robotu</a>

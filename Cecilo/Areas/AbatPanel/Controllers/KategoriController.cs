@@ -40,7 +40,7 @@ namespace Cecilo.Areas.AbatPanel.Controllers
         // GET: Kategori/Create
         public ActionResult Create()
         {
-            ViewBag.UstKategoriId = new SelectList(db.Kategori, "Id", "KategoriAdi");
+            ViewBag.UstKategoriId = new SelectList(db.Kategori, "Id", "CategoryTitle");
             return View();
         }
 
@@ -59,7 +59,7 @@ namespace Cecilo.Areas.AbatPanel.Controllers
                 ViewBag.Status = "success";
                 ViewBag.Baslik = "Harika";
                 db.SaveChanges();
-                ViewBag.UstKategoriId = new SelectList(db.Kategori, "Id", "KategoriAdi", kategori.UstKategoriId);
+                ViewBag.UstKategoriId = new SelectList(db.Kategori, "Id", "CategoryTitle", kategori.UstKategoriId);
                 return View(kategori);
             }
             else
@@ -99,7 +99,7 @@ namespace Cecilo.Areas.AbatPanel.Controllers
             {
                 db.Entry(kategori).State = EntityState.Modified;
                 db.SaveChanges();
-                ViewBag.UstKategoriId = new SelectList(db.Kategori, "Id", "KategoriAdi", kategori.UstKategoriId);
+                ViewBag.UstKategoriId = new SelectList(db.Kategori, "Id", "CategoryTitle", kategori.UstKategoriId);
                 string mesaj = "<script language='javascript' type='text/javascript'>alert('Düzenleme İşlemi Başarıyla Gerçekleşmiştir!');window.location.href = '/abatpanel/kategori/edit/" + kategori.Id + "';</script>";
                 return Content(mesaj);
             }

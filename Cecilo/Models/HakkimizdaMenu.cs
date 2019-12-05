@@ -14,5 +14,8 @@ namespace Cecilo.Models
         public string Detail { get; set; }
         public string Image { get; set; }
         public LanguageId Lang { get; set; }
+
+
+
     }
 }

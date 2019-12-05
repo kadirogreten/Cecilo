@@ -12,7 +12,7 @@ namespace Cecilo.Models
 
         public int? UstKategoriId { get; set; }
         public string KategoriAdi { get; set; }
-
+        public string CategoryTitle { get; set; }
         public ICollection<Urun> Urunler { get; set; }
 
         [ForeignKey("UstKategoriId")]

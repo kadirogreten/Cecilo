@@ -16,7 +16,7 @@
             <div class="col-sm-6 col-sm-offset-3">
                 <div class="cell-view simple-banner-height text-center">
                     <div class="empty-space col-xs-b35 col-sm-b70"></div>
-                    <h1 class="h1 light ">İLETİŞİM</h1>
+                    <h1 class="h1 light ">@Resources.Resources.Iletisim</h1>
 
                     @if (ViewBag.StatusMessage != "")
                     {
@@ -40,8 +40,8 @@
 
 <div class="container">
     <div class="text-center">
-        <div class="simple-article size-3 grey uppercase col-xs-b5">Baglantılarımız</div>
-        <div class="h2">Sorularınız için hazırız</div>
+        <div class="simple-article size-3 grey uppercase col-xs-b5">@Resources.Resources.Baglantilarimiz</div>
+        <div class="h2">@Resources.Resources.SorularinizIcin</div>
         <div class="title-underline center"><span></span></div>
     </div>
 </div>
@@ -53,7 +53,7 @@
         <div class="col-sm-3">
             <div class="icon-description-shortcode style-1">
                 <img class="icon" src="~/Assets/img/icon-25.png" alt="">
-                <div class="title h6">adres</div>
+                <div class="title h6">@Resources.Resources.Adres</div>
                 <div class="description simple-article size-2">
                     MEZOPOTAMYA MAH.PEYAS CAD.AZEL RESİDANS-1
                     ÇETİN DURMAZ SİT.B APT.NO : 130 B BLOK NO: 1
@@ -64,7 +64,7 @@
         <div class="col-sm-3">
             <div class="icon-description-shortcode style-1">
                 <img class="icon" src="~/Assets/img/icon-23.png" alt="">
-                <div class="title h6">TEL</div>
+                <div class="title h6">@Resources.Resources.TEL</div>
                 <div class="description simple-article size-2" style="line-height: 26px;">
                     <a href="tel:+35235551238745">0850 677 97 12</a>
                     <br />
@@ -75,14 +75,14 @@
         <div class="col-sm-3">
             <div class="icon-description-shortcode style-1">
                 <img class="icon" src="~/Assets/img/icon-28.png" alt="">
-                <div class="title h6">E POSTA</div>
+                <div class="title h6">@Resources.Resources.EPOSTA</div>
                 <div class="description simple-article size-2"><a href="mailto:info@cecilohome.com">info@cecilohome.com</a></div>
             </div>
         </div>
         <div class="col-sm-3">
             <div class="icon-description-shortcode style-1">
                 <img class="icon" src="~/Assets/img/icon-26.png" alt="">
-                <div class="title h6">sosyal medya</div>
+                <div class="title h6">@Resources.Resources.SOSYALMEDYA</div>
                 <div class="follow light">
                     <a class="entry" href="#"><i class="fa fa-facebook"></i></a>
                     <a class="entry" href="#"><i class="fa fa-twitter"></i></a>
@@ -132,7 +132,7 @@
 <div class="empty-space col-xs-b25 col-sm-b50"></div>
 
 <div class="container">
-    <h4 class="h4 text-center col-xs-b25">BİR SORUNUZ MU VAR ?</h4>
+    <h4 class="h4 text-center col-xs-b25">@Resources.Resources.SorunuzMuVar ?</h4>
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <form class="contact-form" action="/cecilo/iletisim" method="post">
@@ -147,27 +147,27 @@
 
                     <div class="col-sm-6">
 
-                        @Html.EditorFor(model => model.AdiSoyadi, new { htmlAttributes = new { @class = "simple-input col-xs-b20", placeholder = "Adınız Soyadınız" } })
+                        @Html.EditorFor(model => model.AdiSoyadi, new { htmlAttributes = new { @class = "simple-input col-xs-b20", placeholder = $"{@Resources.Resources.NameSurname}" } })
                         @Html.ValidationMessageFor(model => model.AdiSoyadi, "", new { @class = "text-danger" })
                     </div>
                     <div class="col-sm-6">
 
-                        @Html.EditorFor(model => model.Eposta, new { htmlAttributes = new { @class = "simple-input col-xs-b20", placeholder = "E-Posta" } })
+                        @Html.EditorFor(model => model.Eposta, new { htmlAttributes = new { @class = "simple-input col-xs-b20", placeholder = $"{@Resources.Resources.EpostaContact}" } })
                         @Html.ValidationMessageFor(model => model.Eposta, "", new { @class = "text-danger" })
                     </div>
                     <div class="col-sm-6">
 
-                        @Html.EditorFor(model => model.Telefon, new { htmlAttributes = new { @class = "simple-input col-xs-b20", placeholder = "Telefon" } })
+                        @Html.EditorFor(model => model.Telefon, new { htmlAttributes = new { @class = "simple-input col-xs-b20", placeholder = $"{@Resources.Resources.TelefonContact}" } })
                         @Html.ValidationMessageFor(model => model.Telefon, "", new { @class = "text-danger" })
                     </div>
                     <div class="col-sm-6">
 
-                        @Html.EditorFor(model => model.Konu, new { htmlAttributes = new { @class = "simple-input col-xs-b20", placeholder = "Konu" } })
+                        @Html.EditorFor(model => model.Konu, new { htmlAttributes = new { @class = "simple-input col-xs-b20", placeholder = $"{@Resources.Resources.Konu}" } })
                         @Html.ValidationMessageFor(model => model.Konu, "", new { @class = "text-danger" })
                     </div>
                     <div class="col-sm-12">
 
-                        @Html.EditorFor(model => model.Mesaj, new { htmlAttributes = new { @class = "simple-input col-xs-b20", placeholder = "Mesajınız", cols = 100 } })
+                        @Html.EditorFor(model => model.Mesaj, new { htmlAttributes = new { @class = "simple-input col-xs-b20", placeholder = $"{@Resources.Resources.Message}", cols = 100 } })
                         @Html.ValidationMessageFor(model => model.Mesaj, "", new { @class = "text-danger" })
                     </div>
                     @* showing Captcha on the form:
@@ -182,7 +182,7 @@
                             @Html.Captcha(registrationCaptcha)
                         </div>
 
-                        @Html.Label("Doğrulama Kodunuz", new
+                        @Html.Label($"{@Resources.Resources.VerifyCode}", new
                         {
                             @class = "col-md-4 control-label",
                         @for = "CaptchaCode"
@@ -198,7 +198,7 @@
                             <div class="button size-2 style-3">
                                 <span class="button-wrapper">
                                     <span class="icon"><img src="~/Assets/img/icon-4.png" alt=""></span>
-                                    <span class="text">GÖNDER</span>
+                                    <span class="text">@Resources.Resources.SendButton</span>
                                 </span>
                                 <input type="submit" />
                             </div>

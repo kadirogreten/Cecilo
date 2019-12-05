@@ -41,7 +41,7 @@ namespace Cecilo.Areas.AbatPanel.Controllers
 
         public ActionResult UruneRenkAta()
         {
-            ViewBag.UrunId = new SelectList(db.Urun, "Id", "UrunAdi");
+            ViewBag.UrunId = new SelectList(db.Urun, "Id", "AltBaslik");
             ViewBag.Renkler = db.Renks;
 
             return View();
@@ -49,7 +49,7 @@ namespace Cecilo.Areas.AbatPanel.Controllers
 
         public ActionResult UruneEtiketAta()
         {
-            ViewBag.UrunId = new SelectList(db.Urun, "Id", "UrunAdi");
+            ViewBag.UrunId = new SelectList(db.Urun, "Id", "AltBaslik");
             ViewBag.Etiketler = db.Etikets;
 
             return View();
@@ -87,7 +87,7 @@ namespace Cecilo.Areas.AbatPanel.Controllers
                 }
             }
 
-            ViewBag.UrunId = new SelectList(db.Urun, "Id", "UrunAdi");
+            ViewBag.UrunId = new SelectList(db.Urun, "Id", "AltBaslik");
             ViewBag.Renkler = db.Renks;
             ViewBag.Mesaj = "Ekleme Başarılı.";
             ViewBag.Status = "success";
@@ -113,7 +113,7 @@ namespace Cecilo.Areas.AbatPanel.Controllers
                 }
             }
 
-            ViewBag.UrunId = new SelectList(db.Urun, "Id", "UrunAdi");
+            ViewBag.UrunId = new SelectList(db.Urun, "Id", "AltBaslik");
             ViewBag.Etiketler = db.Etikets;
             ViewBag.Mesaj = "Ekleme Başarılı.";
             ViewBag.Status = "success";
@@ -124,7 +124,7 @@ namespace Cecilo.Areas.AbatPanel.Controllers
         // GET: Urun/Create
         public ActionResult Create()
         {
-            ViewBag.KategoriId = new SelectList(db.Kategori, "Id", "KategoriAdi");
+            ViewBag.KategoriId = new SelectList(db.Kategori, "Id", "CategoryTitle");
             ViewBag.MarkalarId = new SelectList(db.Markalar, "Id", "MarkaAdi");
 
 
@@ -158,7 +158,7 @@ namespace Cecilo.Areas.AbatPanel.Controllers
                         ViewBag.Mesaj = "Dosya seçmeden işleminize devam etmektesiniz. Lütfen 2 Adet Resim Dosyası Seçiniz!";
                         ViewBag.Status = "error";
                         ViewBag.Baslik = "Oops!";
-                        ViewBag.KategoriId = new SelectList(db.Kategori, "Id", "KategoriAdi", urun.KategoriId);
+                        ViewBag.KategoriId = new SelectList(db.Kategori, "Id", "CategoryTitle", urun.KategoriId);
                         ViewBag.MarkalarId = new SelectList(db.Markalar, "Id", "MarkaAdi", urun.MarkalarId);
                         return View(urun);
                     }
@@ -170,14 +170,14 @@ namespace Cecilo.Areas.AbatPanel.Controllers
                 ViewBag.Baslik = "Harika";
                 db.Urun.Add(urun);
                 db.SaveChanges();
-                ViewBag.KategoriId = new SelectList(db.Kategori, "Id", "KategoriAdi", urun.KategoriId);
+                ViewBag.KategoriId = new SelectList(db.Kategori, "Id", "CategoryTitle", urun.KategoriId);
                 ViewBag.MarkalarId = new SelectList(db.Markalar, "Id", "MarkaAdi", urun.MarkalarId);
                 return View(urun);
             }
             ViewBag.Mesaj = "Hata";
             ViewBag.Status = "error";
             ViewBag.Baslik = "Oops!";
-            ViewBag.KategoriId = new SelectList(db.Kategori, "Id", "KategoriAdi", urun.KategoriId);
+            ViewBag.KategoriId = new SelectList(db.Kategori, "Id", "CategoryTitle", urun.KategoriId);
             ViewBag.MarkalarId = new SelectList(db.Markalar, "Id", "MarkaAdi", urun.MarkalarId);
 
             return View(urun);
@@ -207,7 +207,7 @@ namespace Cecilo.Areas.AbatPanel.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.KategoriId = new SelectList(db.Kategori, "Id", "KategoriAdi", urun.KategoriId);
+            ViewBag.KategoriId = new SelectList(db.Kategori, "Id", "CategoryTitle", urun.KategoriId);
             ViewBag.MarkalarId = new SelectList(db.Markalar, "Id", "MarkaAdi", urun.MarkalarId);
             return View(urun);
         }
@@ -322,7 +322,7 @@ namespace Cecilo.Areas.AbatPanel.Controllers
             ViewBag.Mesaj = "Hata";
             ViewBag.Status = "error";
             ViewBag.Baslik = "Oops!";
-            ViewBag.KategoriId = new SelectList(db.Kategori, "Id", "KategoriAdi", urun.KategoriId);
+            ViewBag.KategoriId = new SelectList(db.Kategori, "Id", "CategoryTitle", urun.KategoriId);
             ViewBag.MarkalarId = new SelectList(db.Markalar, "Id", "MarkaAdi", urun.MarkalarId);
             return View(urun);
 

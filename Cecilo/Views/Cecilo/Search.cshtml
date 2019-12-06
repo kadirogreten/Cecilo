@@ -1,0 +1,182 @@
+﻿@model Cecilo.Models.SearchViewModel
+@using IdentitySample.Models;
+@using Cecilo.Models;
+@using System.Data.Entity;
+@using Cecilo.Helpers
+@{
+    ViewBag.Title = $"Search || {Model.SearchString}";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="header-empty-space"></div>
+
+<div class="container">
+    <div class="empty-space col-xs-b15 col-sm-b30"></div>
+    <div class="breadcrumbs">
+        <a href="@Url.Action("index","cecilo")">@Resources.Resources.Anasayfa</a>
+
+        <a href="">Search</a>
+    </div>
+    <div class="empty-space col-xs-b15 col-sm-b50 col-md-b100"></div>
+    <div class="row">
+        <div class="col-md-9 col-md-push-3">
+
+            <div class="h6 animate-to-green"><a href="@Url.Action("urunlerimiz","cecilo")">@Resources.Resources.Urunlerimiz</a></div>
+            <div class="empty-space col-xs-b15 col-sm-b50 col-md-b100"></div>
+
+            <div class="products-content">
+                <div class="products-wrapper">
+                    <div class="row nopadding">
+
+                        @{
+                            if (Model != null)
+                            {
+
+                                foreach (var item in Model.Urunlerimiz)
+                                {
+                                    <div class="col-sm-4">
+                                        <div class="product-shortcode style-1">
+                                            <div class="title">
+                                                <div class="simple-article size-1 color col-xs-b5"><a href="~/c-@item.Kategori.KategoriAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@item.Kategori.CategoryTitle</a></div>
+                                                <div class="h6 animate-to-green"><a href="~/p-@item.UrunAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@item.AltBaslik</a></div>
+                                            </div>
+                                            <div class="preview">
+                                                <a href="~/p-@item.UrunAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">
+                                                    <img src="@item.Resimler.FirstOrDefault().Path" alt="@item.AltBaslik">
+                                                </a>
+                                            </div>
+                                            <div class="price">
+                                                <div class="color-selection">
+                                                    @if (item.Renkler != null)
+                                                    {
+                                                        foreach (var renk in item.Renkler)
+                                                        {
+                                                            <div class="entry active" style="color: @renk.RenkKodu"></div>
+                                                        }
+                                                    }
+                                                    @*<div class="entry active" style="color: #a7f050;"></div>
+                                                        <div class="entry" style="color: #50e3f0;"></div>
+                                                        <div class="entry" style="color: #eee;"></div>*@
+                                                </div>
+                                                @*<div class="simple-article size-4"><span class="color">@item.Fiyat</span>&nbsp;&nbsp;&nbsp;<span class="line-through">@item.Fiyat</span></div>*@
+                                            </div>
+                                            <div class="description">
+                                                @*<div class="simple-article text size-2">@Html.Raw(item.Aciklama)</div>*@
+                                                <div class="icons">
+
+                                                    <a href="~/p-@item.UrunAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")" class="entry"><i class="fa fa-eye" aria-hidden="true"></i></a>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+
+
+                            }
+                        }
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-3 col-md-pull-9">
+            <div class="h4 col-xs-b10">@Resources.Resources.Kategoriler</div>
+
+
+
+            @{
+
+                var db = new ApplicationDbContext();
+                var kategori = db.Kategori.Where(a => a.UstKategoriId == null);
+                if (Cecilo.CultureHelper.GetCurrentNeutralCulture() == "en")
+                {
+                    kategori = db.Kategori.Where(a => a.UstKategoriId == null).Where(a => a.Lang == Cecilo.LanguageId.En);
+                }
+                else if (Cecilo.CultureHelper.GetCurrentNeutralCulture() == "tr")
+                {
+                    kategori = db.Kategori.Where(a => a.UstKategoriId == null).Where(a => a.Lang == Cecilo.LanguageId.Tr);
+                }
+
+            }
+
+
+            @(Html.TreeView(kategori)
+                .EmptyContent("No locations have been defined yet!")
+                .Children(m => m.AltKategoriler)
+                .HtmlAttributes(new { @class = "categories-menu transparent" })
+                .ItemText(m => m.CategoryTitle)
+                .ItemTemplate(
+                                                @<text>
+                                                    <a href="~/c-@item.KategoriAdi.Replace(" ", "-").Replace(".", "").Replace("İ", "i").Replace("I", "i").Replace("&", "-")">@item.CategoryTitle</a>
+                                                </text>)
+            )
+
+
+
+
+            @*@{
+                    var db = new ApplicationDbContext();
+
+                    var kategori = db.Kategori.Include(a => a.UstKategori).ToList().FindAll(k => k.UstKategoriId == null);
+                    foreach (var item in kategori)
+                    {
+                        <li>
+                            <a href="#">@item.KategoriAdi</a>
+                            <div class="toggle"></div>
+
+                            @{
+                                var altkategori = kategori.FindAll(a => a.UstKategoriId == item.Id).FirstOrDefault();
+                                <ul>
+
+                                    @foreach (var item2 in altkategori.AltKategoriler)
+                                    {
+
+                                    <li>
+                                        <a href="#">@item2.KategoriAdi</a>
+                                        <div class="toggle"></div>
+                                    </li>
+
+
+                                    }
+                                </ul>
+                            }
+
+                        </li>
+                    }
+
+                }*@
+
+
+
+            <div class="empty-space col-xs-b25 col-sm-b50"></div>
+
+            <div class="h4 col-xs-b25">@Resources.Resources.PopulerEtiketler</div>
+            <div class="tags light clearfix">
+
+                @{
+                    var etiketler = db.Etikets.OrderByDescending(a => a.Sira).ToList();
+
+                    if (etiketler.Count > 0)
+                    {
+                        foreach (var item in etiketler)
+                        {
+                            <a class="tag">@item.EtiketAdi</a>
+                        }
+                    }
+                }
+
+            </div>
+
+            <div class="empty-space col-xs-b25 col-sm-b50"></div>
+
+
+        </div>
+    </div>
+</div>
+
+
+
+

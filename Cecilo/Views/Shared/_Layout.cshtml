@@ -204,13 +204,13 @@
                             <div class="container-fluid">
                                 <div class="row">
                                     <div class="col-sm-8 col-sm-offset-2 col-lg-6 col-lg-offset-3">
-                                        <form action="@Url.Action("index","search")" id="searchString" method="get">
+                                        <form action="@Url.Action("search","cecilo")" id="searchString" method="get">
 
                                             <div class="search-submit">
                                                 <i class="fa fa-search" aria-hidden="true"></i>
                                                 <input type="submit" onclick="document.getElementById('searchString').submit()" />
                                             </div>
-                                            <input class="simple-input style-1" type="text" value="" name="ara" placeholder="Enter keyword" />
+                                            <input class="simple-input style-1" type="text" value="" name="ara" placeholder="Search" />
 
                                         </form>
 
@@ -294,9 +294,9 @@
 
                                     </div>
                                     <div class="col-xs-6">
-                                        <a href="~/cecilo/urunlerimiz">@Resources.Resources.Urunlerimiz</a>
-                                        <a href="~/cecilo/belgelerimiz">@Resources.Resources.Belgelerimiz</a>
-                                        <a href="~/cecilo/iletisim">@Resources.Resources.Iletisim</a>
+                                        <a href="@Url.Action("urunlerimiz","cecilo")">@Resources.Resources.Urunlerimiz</a>
+                                        <a href="@Url.Action("belgelerimiz","cecilo")">@Resources.Resources.Belgelerimiz</a>
+                                        <a href="@Url.Action("iletisim","cecilo")">@Resources.Resources.Iletisim</a>
 
                                     </div>
                                 </div>

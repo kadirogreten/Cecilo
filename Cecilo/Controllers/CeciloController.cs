@@ -393,6 +393,77 @@ namespace Cecilo.Controllers
                 return View(new { Message = message });
             }
         }
+        [Route("Search")]
+        public ActionResult Search(string ara)
+        {
+
+            SearchViewModel model = new SearchViewModel();
+
+            if (CultureHelper.GetCurrentNeutralCulture() == "tr")
+            {
+                model.Urunlerimiz = db.Urun.Include(a => a.Etiketler).Include(a => a.Markalar).Include(a => a.Resimler).Include(a => a.Renkler).Where(a => a.Lang == LanguageId.Tr).ToList();
+                model.Kategoriler = db.Kategori.Where(a => a.Lang == LanguageId.Tr).ToList();
+                model.Markalar = db.Markalar.Where(a => a.Lang == LanguageId.Tr).ToList();
+            }
+            else if (CultureHelper.GetCurrentNeutralCulture() == "en")
+            {
+                model.Urunlerimiz = db.Urun.Include(a => a.Etiketler).Include(a => a.Markalar).Include(a => a.Resimler).Include(a => a.Renkler).Where(a => a.Lang == LanguageId.En).ToList();
+                model.Kategoriler = db.Kategori.Where(a => a.Lang == LanguageId.En).ToList();
+                model.Markalar = db.Markalar.Where(a => a.Lang == LanguageId.En).ToList();
+            }
+
+            var culture = CultureHelper.GetCurrentNeutralCulture();
+
+            model.SearchString = ara;
+
+
+
+
+            if (!String.IsNullOrEmpty(model.SearchString))
+            {
+                model.Urunlerimiz = model.Urunlerimiz
+                    .Where(a => a.AltBaslik
+                    .Replace(" ", "-")
+                    .Replace("I", "i")
+                    .Replace("ı", "i")
+                    .ToLower()
+                    .Contains(model.SearchString
+                    .Replace(" ", "-")
+                    .Replace("I", "i")
+                    .Replace("ı", "i")
+                    .ToLower()));
+            }
+            if (!String.IsNullOrEmpty(model.SearchString))
+            {
+                model.Kategoriler = model.Kategoriler
+                    .Where(a => a.CategoryTitle
+                    .Replace(" ", "-")
+                    .Replace("I", "i")
+                    .Replace("ı", "i")
+                    .ToLower()
+                    .Contains(model.SearchString
+                    .Replace(" ", "-")
+                    .Replace("I", "i")
+                    .Replace("ı", "i")
+                    .ToLower()));
+            }
+            if (!String.IsNullOrEmpty(model.SearchString))
+            {
+                model.Markalar = model.Markalar
+                    .Where(a => a.MarkaAdi
+                    .Replace(" ", "-")
+                    .Replace("I", "i")
+                    .Replace("ı", "i")
+                    .ToLower()
+                    .Contains(model.SearchString
+                    .Replace(" ", "-")
+                    .Replace("I", "i")
+                    .Replace("ı", "i")
+                    .ToLower()));
+            }
+
+            return View(model);
+        }
 
 
     }

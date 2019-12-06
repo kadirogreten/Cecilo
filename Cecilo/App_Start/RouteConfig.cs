@@ -14,7 +14,7 @@ namespace IdentitySample
             routes.IgnoreRoute("{*botdetect}",
             new { botdetect = @"(.*)BotDetectCaptcha\.ashx" });
 
-            routes.MapMvcAttributeRoutes();
+           routes.MapMvcAttributeRoutes();
 
            // routes.MapRoute(
            //   name: "Cecilo",

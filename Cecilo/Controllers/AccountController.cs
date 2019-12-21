@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace IdentitySample.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin,Cecilo")]
 
     public class AccountController : Controller
     {
@@ -138,8 +138,8 @@ namespace IdentitySample.Controllers
         //
         // GET: /Account/Register
         [HttpGet]
-        [AllowAnonymous]
-        
+        [Authorize(Roles = "Admin,Cecilo")]
+
         public ActionResult Register()
         {
             return View();
@@ -148,7 +148,7 @@ namespace IdentitySample.Controllers
         //
         // POST: /Account/Register
         [HttpPost]
-        [AllowAnonymous]
+        [Authorize(Roles = "Admin,Cecilo")]
         [ValidateAntiForgeryToken]
         
         public async Task<ActionResult> Register(RegisterViewModel model)
@@ -175,8 +175,8 @@ namespace IdentitySample.Controllers
         //
         // GET: /Account/ConfirmEmail
         [HttpGet]
-        [AllowAnonymous]
-        
+        [Authorize(Roles = "Admin,Cecilo")]
+
         public async Task<ActionResult> ConfirmEmail(string userId, string code)
         {
             if (userId == null || code == null)
@@ -200,7 +200,7 @@ namespace IdentitySample.Controllers
         //
         // POST: /Account/ForgotPassword
         [HttpPost]
-        [AllowAnonymous]
+        [Authorize(Roles = "Admin,Cecilo")]
         [ValidateAntiForgeryToken]
         
         public async Task<ActionResult> ForgotPassword(ForgotPasswordViewModel model)
@@ -228,8 +228,8 @@ namespace IdentitySample.Controllers
         //
         // GET: /Account/ForgotPasswordConfirmation
         [HttpGet]
-        [AllowAnonymous]
-        
+        [Authorize(Roles = "Admin,Cecilo")]
+
         public ActionResult ForgotPasswordConfirmation()
         {
             return View();
@@ -238,8 +238,8 @@ namespace IdentitySample.Controllers
         //
         // GET: /Account/ResetPassword
         [HttpGet]
-        [AllowAnonymous]
-        
+        [Authorize(Roles = "Admin,Cecilo")]
+
         public ActionResult ResetPassword(string code)
         {
             return code == null ? View("Error") : View();
@@ -248,7 +248,7 @@ namespace IdentitySample.Controllers
         //
         // POST: /Account/ResetPassword
         [HttpPost]
-        [AllowAnonymous]
+        [Authorize(Roles = "Admin,Cecilo")]
         [ValidateAntiForgeryToken]
         
         public async Task<ActionResult> ResetPassword(ResetPasswordViewModel model)
@@ -275,8 +275,8 @@ namespace IdentitySample.Controllers
         //
         // GET: /Account/ResetPasswordConfirmation
         [HttpGet]
-        [AllowAnonymous]
-        
+        [Authorize(Roles = "Admin,Cecilo")]
+
         public ActionResult ResetPasswordConfirmation()
         {
             return View();

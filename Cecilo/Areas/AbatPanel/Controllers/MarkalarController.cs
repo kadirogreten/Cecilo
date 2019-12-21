@@ -11,7 +11,7 @@ using IdentitySample.Models;
 
 namespace Cecilo.Areas.AbatPanel.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin,Cecilo")]
     public class MarkalarController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

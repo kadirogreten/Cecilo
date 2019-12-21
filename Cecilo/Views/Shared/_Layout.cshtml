@@ -116,7 +116,7 @@
                                         {
                                             <li>
                                                 @{
-                                                    
+
                                                     var menuTop = db.HakkimizdaMenu.Where(b => b.MenuAdi.Contains("Hakkımızda") && b.Lang == Cecilo.LanguageId.Tr).FirstOrDefault();
 
                                                     if (menuTop != null)
@@ -146,7 +146,7 @@
                                         {
                                             <li>
                                                 @{
-                                                    
+
                                                     var menu = db.HakkimizdaMenu.Where(b => b.MenuAdi.Contains("Hakkımızda") && b.Lang == Cecilo.LanguageId.En).FirstOrDefault();
 
                                                     if (menu != null)
@@ -184,6 +184,10 @@
                                         </li>
 
                                         <li><a href="@Url.Action("iletisim","Cecilo")">@Resources.Resources.Iletisim</a></li>
+                                        @if (User.Identity.IsAuthenticated && (User.IsInRole("Cecilo") || User.IsInRole("Admin")))
+                                        {
+                                            <li><a target="_blank" href="@Url.Action("index","home",new { area = "abatpanel"})">Panel</a></li>
+                                        }
                                     </ul>
                                     <div class="navigation-title">
                                         Navigation

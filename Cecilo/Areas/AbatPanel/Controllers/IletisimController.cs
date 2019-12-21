@@ -11,6 +11,7 @@ using IdentitySample.Models;
 
 namespace Cecilo.Areas.AbatPanel.Controllers
 {
+    [Authorize(Roles = "Admin,Cecilo")]
     public class IletisimController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

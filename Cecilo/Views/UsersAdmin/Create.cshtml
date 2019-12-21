@@ -1,52 +1,97 @@
 ﻿@model IdentitySample.Models.RegisterViewModel
 @{
     ViewBag.Title = "Create";
+    Layout = "~/Areas/AbatPanel/Views/Shared/_CeciloPanel.cshtml";
 }
 
-<h2>@ViewBag.Title.</h2>
 
-@using (Html.BeginForm("Create", "UsersAdmin", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-{
-    @Html.AntiForgeryToken()
-    <h4>Create a new account.</h4>
-    <hr />
-    @Html.ValidationSummary("", new { @class = "text-error" })
-    <div class="form-group">
-        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+
+<div class="m-grid__item m-grid__item--fluid m-wrapper">
+
+    <div class="m-content">
+        <div class="row">
+
+            <div class="col-md-12">
+
+
+                <!--begin::Portlet-->
+                <div class="m-portlet m-portlet--tab">
+                    <div class="m-portlet__head">
+                        <div class="m-portlet__head-caption">
+                            <div class="m-portlet__head-title">
+                                <span class="m-portlet__head-icon m--hide">
+                                    <i class="la la-gear"></i>
+                                </span>
+                                <h3 class="m-portlet__head-text">
+                                    Square & Solid Input Style
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--begin::Form-->
+                    <form class="m-form m-form--fit m-form--label-align-right" action="/usersadmin/create" method="post" enctype="multipart/form-data">
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true)
+                        <div class="m-portlet__body">
+                            <div class="form-group m-form__group m--margin-top-10">
+                                <div class="alert m-alert m-alert--default" role="alert">
+                                    The example form below demonstrates common HTML form elements solid background style:
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group">
+                                <label for="exampleInputEmail1">Kullanıcı Adı</label>
+                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control m-input m-input--solid", placeholder = "E-Mail" } })
+                                @Html.ValidationMessageFor(model => model.Email)
+                            </div>
+                            <div class="form-group m-form__group">
+                                <label for="exampleInputEmail1">Şifre</label>
+                                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control m-input m-input--solid", placeholder = "Şifre" } })
+                                @Html.ValidationMessageFor(model => model.Password)
+                            </div>
+
+                            <div class="form-group m-form__group">
+                                <label for="exampleInputEmail1">Şifre Onay</label>
+                                @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control m-input m-input--solid", placeholder = "Şifre" } })
+                                @Html.ValidationMessageFor(model => model.ConfirmPassword)
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group">
+                            <label class="col-md-2 control-label">
+                                Select User Role
+                            </label>
+                            <div class="col-md-10">
+                                @foreach (var item in (SelectList)ViewBag.RoleId)
+                                {
+                                    <input type="checkbox" name="SelectedRoles" value="@item.Value" class="checkbox-inline" />
+                                    @Html.Label(item.Value, new { @class = "control-label" })
+                                }
+                            </div>
+                        </div>
+                        <div class="m-portlet__foot m-portlet__foot--fit">
+                            <div class="m-form__actions">
+                                <button type="submit" class="btn btn-success">Güncelle</button>
+
+
+                                <a href="~/usersadmin/index" type="reset" class="btn btn-secondary">Vazgeç</a>
+                            </div>
+                        </div>
+                    </form>
+
+
+                    <!--end::Form-->
+                </div>
+
+                <!--end::Portlet-->
+
+
+
+            </div>
         </div>
     </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-md-2 control-label">
-            Select User Role
-        </label>
-        <div class="col-md-10">
-            @foreach (var item in (SelectList)ViewBag.RoleId)
-            {
-                <input type="checkbox" name="SelectedRoles" value="@item.Value" class="checkbox-inline" />
-                @Html.Label(item.Value, new { @class = "control-label" })
-            }
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Create" />
-        </div>
-    </div>
-}
+</div>
+
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

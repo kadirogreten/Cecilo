@@ -114,7 +114,7 @@ namespace IdentitySample.Controllers
                     return View();
 
                 }
-                return RedirectToAction("Index");
+                return Redirect("~/usersadmin/index");
             }
             ViewBag.RoleId = new SelectList(RoleManager.Roles, "Name", "Name");
             return View();
@@ -185,7 +185,7 @@ namespace IdentitySample.Controllers
                     ModelState.AddModelError("", result.Errors.First());
                     return View();
                 }
-                return RedirectToAction("Index");
+                return Redirect("~/usersadmin/index");
             }
             ModelState.AddModelError("", "Something failed.");
             return View();
@@ -233,7 +233,7 @@ namespace IdentitySample.Controllers
                     ModelState.AddModelError("", result.Errors.First());
                     return View();
                 }
-                return RedirectToAction("Index");
+                return Redirect("~/usersadmin/index");
             }
             return View();
         }

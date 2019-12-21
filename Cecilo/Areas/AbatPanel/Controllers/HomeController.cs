@@ -11,7 +11,7 @@ using System.Data.Entity;
 
 namespace Cecilo.Areas.AbatPanel.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin,Cecilo")]
     public class HomeController : Controller
     {
 
